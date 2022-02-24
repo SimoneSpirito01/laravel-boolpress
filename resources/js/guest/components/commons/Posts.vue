@@ -4,7 +4,12 @@
         <ul>
             <li v-for="(post, i) in visiblePosts" :key="i">
                 <div class="title">
-                    <strong>Title: </strong>{{ post.title }}
+                    <strong>Title: </strong>
+                    <router-link
+                        :to="{ name: 'post', params: { slug: post.slug } }"
+                    >
+                        {{ post.title }}
+                    </router-link>
                 </div>
                 <div v-if="post.category != null" class="category">
                     <strong>Category: </strong>{{ post.category.name }}
@@ -53,6 +58,16 @@ ul {
 
     li {
         margin: 15px 0;
+
+        .title {
+            a {
+                color: black;
+                text-decoration: none;
+                &:hover {
+                    color: lightseagreen;
+                }
+            }
+        }
 
         > div {
             margin: 4px 0;

@@ -4,8 +4,14 @@
             <nav>
                 <ul>
                     <li><a href="/admin/home">Reserved area</a></li>
-                    <li><router-link :to="{ name: 'home' }">Home</router-link></li>
-                    <li><router-link :to="{ name: 'about' }">About Us</router-link></li>
+                    <li>
+                        <router-link :to="{ name: 'home' }">Home</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'about' }"
+                            >About Us</router-link
+                        >
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -19,18 +25,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 header {
     padding-top: 40px;
 
     ul {
         list-style: none;
 
-        a {
-            color: blue;
-            text-decoration: none;
+        li {
+            margin: 5px 0;
+            a {
+                color: lightseagreen;
+                text-decoration: none;
+            }
         }
     }
 }
-
 </style>
