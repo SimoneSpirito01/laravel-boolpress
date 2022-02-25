@@ -7,9 +7,14 @@
                     <li>
                         <router-link :to="{ name: 'home' }">Home</router-link>
                     </li>
-                     <li>
+                    <li>
                         <router-link :to="{ name: 'categories' }"
                             >Categories</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'tags' }"
+                            >Tags</router-link
                         >
                     </li>
                     <li>

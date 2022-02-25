@@ -16,7 +16,14 @@
             <div v-if="post.tags.length" class="tags">
                 <strong>Tags: </strong>
                 <div v-for="(tag, i) in post.tags" :key="i" class="tag">
-                    {{ tag.name }}
+                    <router-link
+                        :to="{
+                            name: 'tag',
+                            params: { slug: tag.slug },
+                        }"
+                    >
+                        {{ tag.name }}
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -65,7 +72,7 @@ export default {
             width: 100%;
         }
     }
-    .category {
+    .category, .tags {
         a {
             color: black;
             text-decoration: none;

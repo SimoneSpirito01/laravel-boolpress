@@ -8,6 +8,8 @@ import About from "./pages/About";
 import Post from "./pages/Post";
 import CategoriesList from "./pages/CategoriesList";
 import Category from "./pages/Category";
+import TagsList from "./pages/TagsList";
+import Tag from "./pages/Tag";
 import PageNotFound from "./pages/PageNotFound";
 
 const router = new VueRouter({
@@ -37,6 +39,16 @@ const router = new VueRouter({
             path: "/categories/:slug",
             name: "category",
             component: Category,
+        },
+        {
+            path: "/tags",
+            name: "tags",
+            component: TagsList,
+        },
+        {
+            path: "/tags/:slug",
+            name: "tag",
+            component: Tag,
         },
         // error 404
         {

@@ -25,3 +25,7 @@ Route::get('/posts/{slug}', 'Api\PostController@show');
 // api categories
 Route::get('/categories', 'Api\CategoryController@index');
 Route::get('/categories/{slug}', 'Api\CategoryController@show');
+
+// api tags
+Route::get('/tags', 'Api\TagController@index');
+Route::get('/tags/{slug}', 'Api\TagController@show');
