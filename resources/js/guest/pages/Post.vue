@@ -5,11 +5,20 @@
             <img :src="`/storage/${post.image}`" :alt="post.title" />
         </div>
         <div v-if="post.category" class="category">
-            <strong>Category: </strong>{{ post.category.name }}
+            <strong>Category: </strong>
+            <router-link
+                :to="{ name: 'category', params: { slug: post.category.slug } }"
+            >
+                {{ post.category.name }}
+            </router-link>
         </div>
-        <div v-if="post.tags" class="tags">
-            <strong>Tags: </strong>
-            <div v-for="(tag, i) in post.tags" :key="i" class="tag">{{ tag.name }}</div>
+        <div v-if="post.tags">
+            <div v-if="post.tags.length" class="tags">
+                <strong>Tags: </strong>
+                <div v-for="(tag, i) in post.tags" :key="i" class="tag">
+                    {{ tag.name }}
+                </div>
+            </div>
         </div>
         <div class="content">
             {{ post.content }}
@@ -31,8 +40,8 @@ export default {
             .then((response) => {
                 this.post = response.data;
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch((error) => {
+                this.$router.push({ name: "not-found" });
             });
     },
 };
@@ -56,6 +65,15 @@ export default {
             width: 100%;
         }
     }
+    .category {
+        a {
+            color: black;
+            text-decoration: none;
+            &:hover {
+                color: lightseagreen;
+            }
+        }
+    }
     .tags {
         display: flex;
 
@@ -63,7 +81,7 @@ export default {
             margin-left: 5px;
 
             &:not(:last-child)::after {
-                content: ',';
+                content: ",";
             }
         }
     }
