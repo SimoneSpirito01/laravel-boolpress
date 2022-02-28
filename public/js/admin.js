@@ -37295,14 +37295,15 @@ var buttonsToggle = document.getElementsByClassName("btnToggle");
 var buttonDelete = document.querySelector(".my_button");
 var buttonDeleteCategory = document.querySelector(".delete-category");
 var buttonDeleteTag = document.querySelector(".delete-tag");
+var buttonDeleteAuthor = document.querySelector(".delete-author");
 var posts = document.getElementsByClassName("my_item");
-var postSlug;
+var dataSlug;
 var counter;
 
 if (buttonsToggle != null) {
   var _loop = function _loop(i) {
     buttonsToggle[i].addEventListener("click", function () {
-      postSlug = this.getAttribute("data-slug");
+      dataSlug = this.getAttribute("data-slug");
       counter = i;
     });
   };
@@ -37314,10 +37315,10 @@ if (buttonsToggle != null) {
 
 if (buttonDelete != null) {
   buttonDelete.addEventListener("click", function () {
-    console.log(postSlug);
+    console.log(dataSlug);
     axios({
       method: "delete",
-      url: "posts/".concat(postSlug)
+      url: "posts/".concat(dataSlug)
     }).then(function (response) {
       posts[counter].classList.add("d-none");
     })["catch"](function (error) {
@@ -37328,10 +37329,10 @@ if (buttonDelete != null) {
 
 if (buttonDeleteCategory != null) {
   buttonDeleteCategory.addEventListener("click", function () {
-    console.log(postSlug);
+    console.log(dataSlug);
     axios({
       method: "delete",
-      url: "categories/".concat(postSlug)
+      url: "categories/".concat(dataSlug)
     }).then(function (response) {
       posts[counter].classList.add("d-none");
     })["catch"](function (error) {
@@ -37342,10 +37343,24 @@ if (buttonDeleteCategory != null) {
 
 if (buttonDeleteTag != null) {
   buttonDeleteTag.addEventListener("click", function () {
-    console.log(postSlug);
+    console.log(dataSlug);
     axios({
       method: "delete",
-      url: "tags/".concat(postSlug)
+      url: "tags/".concat(dataSlug)
+    }).then(function (response) {
+      posts[counter].classList.add("d-none");
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  });
+}
+
+if (buttonDeleteAuthor != null) {
+  buttonDeleteAuthor.addEventListener("click", function () {
+    console.log(dataSlug);
+    axios({
+      method: "delete",
+      url: "authors/".concat(dataSlug)
     }).then(function (response) {
       posts[counter].classList.add("d-none");
     })["catch"](function (error) {

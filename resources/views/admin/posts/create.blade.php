@@ -39,6 +39,20 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <select id="author" class="custom-select @error('author_id') is-invalid @enderror"
+                                    name="author_id">
+                                    <option value="">Select the author</option>
+                                    @foreach ($authors as $author)
+                                        <option {{ old('author_id') == $author->id ? 'selected' : '' }}
+                                            value="{{ $author->id }}">{{ $author->username }}</option>
+                                    @endforeach
+                                </select>
+                                @error('author_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="form-group mb-3">
                                 <img src="" alt="" class="w-25 mb-3 my_image">
                                 <label class="d-block" for="inputGroupFile02"

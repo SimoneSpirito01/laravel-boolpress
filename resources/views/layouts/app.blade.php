@@ -45,6 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('tags.index') }}">Tags</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('authors.index') }}">Authors</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

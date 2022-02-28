@@ -19,14 +19,15 @@ const buttonsToggle = document.getElementsByClassName("btnToggle");
 const buttonDelete = document.querySelector(".my_button");
 const buttonDeleteCategory = document.querySelector(".delete-category");
 const buttonDeleteTag = document.querySelector(".delete-tag");
+const buttonDeleteAuthor = document.querySelector(".delete-author");
 const posts = document.getElementsByClassName("my_item");
-let postSlug;
+let dataSlug;
 let counter;
 
 if (buttonsToggle != null) {
     for (let i = 0; i < buttonsToggle.length; i++) {
         buttonsToggle[i].addEventListener("click", function () {
-            postSlug = this.getAttribute("data-slug");
+            dataSlug = this.getAttribute("data-slug");
             counter = i;
         });
     }
@@ -34,10 +35,10 @@ if (buttonsToggle != null) {
 
 if (buttonDelete != null) {
     buttonDelete.addEventListener("click", function () {
-        console.log(postSlug);
+        console.log(dataSlug);
         axios({
             method: "delete",
-            url: `posts/${postSlug}`,
+            url: `posts/${dataSlug}`,
         })
             .then(function (response) {
                 posts[counter].classList.add("d-none");
@@ -50,10 +51,10 @@ if (buttonDelete != null) {
 
 if (buttonDeleteCategory != null) {
     buttonDeleteCategory.addEventListener("click", function () {
-        console.log(postSlug);
+        console.log(dataSlug);
         axios({
             method: "delete",
-            url: `categories/${postSlug}`,
+            url: `categories/${dataSlug}`,
         })
             .then(function (response) {
                 posts[counter].classList.add("d-none");
@@ -66,10 +67,26 @@ if (buttonDeleteCategory != null) {
 
 if (buttonDeleteTag != null) {
     buttonDeleteTag.addEventListener("click", function () {
-        console.log(postSlug);
+        console.log(dataSlug);
         axios({
             method: "delete",
-            url: `tags/${postSlug}`,
+            url: `tags/${dataSlug}`,
+        })
+            .then(function (response) {
+                posts[counter].classList.add("d-none");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    });
+}
+
+if (buttonDeleteAuthor != null) {
+    buttonDeleteAuthor.addEventListener("click", function () {
+        console.log(dataSlug);
+        axios({
+            method: "delete",
+            url: `authors/${dataSlug}`,
         })
             .then(function (response) {
                 posts[counter].classList.add("d-none");

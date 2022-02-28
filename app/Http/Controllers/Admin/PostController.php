@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Author;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
@@ -43,7 +44,8 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.posts.create', compact('categories', 'tags'));
+        $authors = Author::all();
+        return view('admin.posts.create', compact('categories', 'tags', 'authors'));
     }
 
     /**
@@ -108,8 +110,9 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
+        $authors = Author::all();
         $post = Post::where('slug', $id)->first();
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'authors'));
     }
 
     /**
