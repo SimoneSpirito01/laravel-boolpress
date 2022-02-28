@@ -1,26 +1,29 @@
 <template>
-    <div>
+    <div class="container">
         <Header />
         <Main />
-        <Footer />
     </div>
 </template>
 
 <script>
 import Header from "./components/macro/Header.vue";
 import Main from "./components/macro/Main.vue";
-import Footer from "./components/macro/Footer.vue";
 
 export default {
     name: "App",
     components: {
         Header,
         Main,
-        Footer,
     },
 };
 </script>
 
 <style lang="scss" scoped>
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow-y: hidden;
+}
 
 </style>

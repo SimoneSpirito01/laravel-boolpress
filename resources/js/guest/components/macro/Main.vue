@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="container">
-            <router-view></router-view>
+            <router-view :key="$route.fullPath"></router-view>
         </div>
     </main>
 </template>
@@ -14,6 +14,10 @@ export default {
 
 <style lang="scss" scoped>
 main {
-    margin: 40px 0;
+    overflow-y: auto;
+
+    .container {
+        width: 77%;
+    }
 }
 </style>

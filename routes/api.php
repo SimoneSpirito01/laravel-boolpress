@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 // api posts
 Route::get('/posts', 'Api\PostController@index');
+Route::get('/posts-main', 'Api\PostController@main');
+Route::get('/posts-latest', 'Api\PostController@latest');
 Route::get('/posts/{slug}', 'Api\PostController@show');
 
 // api categories

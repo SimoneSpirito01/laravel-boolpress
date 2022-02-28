@@ -25,4 +25,18 @@ class PostController extends Controller
 
         return response()->json($post);
     }
+    
+    public function main()
+    {
+        $posts = Post::with(['category', 'tags', 'author'])->take(5)->get();
+        
+        return response()->json($posts);
+    }
+
+    public function latest()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->with(['category', 'tags', 'author'])->take(15)->get();
+        
+        return response()->json($posts);
+    }
 }

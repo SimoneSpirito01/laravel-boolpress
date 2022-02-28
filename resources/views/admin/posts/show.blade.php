@@ -14,7 +14,7 @@
                                 <img src="{{ asset("storage/{$post->image}") }}" alt="{{ $post->title }}"
                                     class="w-25">
                             @endif
-                            <p class="my-4">{{ $post->content }}</p>
+                            <p class="my-4">{!! $post->content !!}</p>
                             <span
                                 class="badge {{ $post->published ? 'badge-success' : 'badge-secondary' }}">{{ $post->published ? 'Published' : 'Not published' }}</span>
                             @if ($post->category)

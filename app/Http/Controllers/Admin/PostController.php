@@ -65,6 +65,7 @@ class PostController extends Controller
         $newPost->content = $data['content'];
         $newPost->published = isset($data['published']);
         $newPost->category_id = $data['category_id'];
+        $newPost->author_id = $data['author_id'];
 
         $slug = Str::of($newPost->title)->slug('-');
         $count = 1;
@@ -154,6 +155,7 @@ class PostController extends Controller
         $post->content = $data['content'];
         $post->published = isset($data['published']);
         $post->category_id = $data['category_id'];
+        $post->author_id = $data['author_id'];
         $post->save();
 
         if(isset($data['tags'])) {

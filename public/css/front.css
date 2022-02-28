@@ -30,16 +30,16 @@
   font-weight: 800;
 }
 
+:root {
+  --nav-color: #777777;
+  --green: #4abf90;
+  --author-name: #333333;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Aktiv", sans-serif;
-}
-
-.container {
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 

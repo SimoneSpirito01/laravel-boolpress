@@ -1,18 +1,27 @@
 <template>
-    <Posts/>
+    <div class="home">
+        <MainPosts/>
+        <LatestPosts/>
+    </div>
 </template>
 
 <script>
-import Posts from '../components/commons/Posts.vue'
+import MainPosts from '../components/sections/MainPosts.vue'
+import LatestPosts from '../components/sections/LatestPosts.vue'
 
 export default {
     name: "Home",
     components: {
-        Posts
+        MainPosts,
+        LatestPosts
     }
 };
 </script>
 
 <style lang="scss" scoped>
+
+.home {
+    padding: 25px;
+}
 
 </style>
