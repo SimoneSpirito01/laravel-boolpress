@@ -29,3 +29,6 @@ Route::get('/categories/{slug}', 'Api\CategoryController@show');
 // api tags
 Route::get('/tags', 'Api\TagController@index');
 Route::get('/tags/{slug}', 'Api\TagController@show');
+
+// apc comments
+Route::post('/comments', 'Api\CommentController@store');

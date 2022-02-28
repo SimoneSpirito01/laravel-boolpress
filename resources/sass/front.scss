@@ -1,10 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
+// typhography
+
+@font-face {
+    font-family: 'Aktiv';
+    src: url(./fonts/TTF/AktivGrotesk-Light.ttf);
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Aktiv';
+    src: url(./fonts/TTF/AktivGrotesk-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Aktiv';
+    src: url(./fonts/TTF/AktivGrotesk-Medium.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Aktiv';
+    src: url(./fonts/TTF/AktivGrotesk-Bold.ttf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Aktiv';
+    src: url(./fonts/TTF/AktivGrotesk-XBold.ttf);
+    font-weight: 800;
+}
+
+// reset
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Aktiv', sans-serif;
 }
 
 .container {

@@ -30,6 +30,44 @@
         <div class="content">
             {{ post.content }}
         </div>
+        <div class="comments">
+            <form @submit.prevent="newComment()">
+                <div class="form-group">
+                    <label for="inputUsername">Username</label>
+                    <input
+                        v-model="formData.name"
+                        type="text"
+                        class="form-control"
+                        id="inputUsername"
+                        placeholder="Insert the username"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1"
+                        >Example textarea</label
+                    >
+                    <textarea
+                        v-model="formData.content"
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                    >
+                    </textarea>
+                    <div v-if="formErrors.content">
+                        <ul>
+                            <li
+                                v-for="(error, i) in formErrors.content"
+                                :key="i"
+                            >
+                                {{ error }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-light">Submit</button>
+            </form>
+            <div v-if="commentSent" class="comment-sent">Comment sent!</div>
+        </div>
     </div>
 </template>
 
@@ -39,13 +77,37 @@ export default {
     data() {
         return {
             post: {},
+            formData: {
+                name: "",
+                content: "",
+                post_id: null,
+            },
+            commentSent: false,
+            formErrors: {},
         };
+    },
+    methods: {
+        newComment() {
+            axios
+                .post("/api/comments", this.formData)
+                .then((response) => {
+                    this.formData.name = "";
+                    this.formData.content = "";
+                    this.commentSent = true;
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error.response.data.errors);
+                    this.formErrors = error.response.data.errors;
+                });
+        },
     },
     created() {
         axios
             .get("/api/posts/" + this.$route.params.slug)
             .then((response) => {
                 this.post = response.data;
+                this.formData.post_id = this.post.id;
             })
             .catch((error) => {
                 this.$router.push({ name: "not-found" });
@@ -72,7 +134,8 @@ export default {
             width: 100%;
         }
     }
-    .category, .tags {
+    .category,
+    .tags {
         a {
             color: black;
             text-decoration: none;

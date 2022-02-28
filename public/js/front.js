@@ -2039,6 +2039,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Posts",
   data: function data() {
@@ -2387,20 +2399,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
   data: function data() {
     return {
-      post: {}
+      post: {},
+      formData: {
+        name: "",
+        content: "",
+        post_id: null
+      },
+      commentSent: false,
+      formErrors: {}
     };
   },
+  methods: {
+    newComment: function newComment() {
+      var _this = this;
+
+      axios.post("/api/comments", this.formData).then(function (response) {
+        _this.formData.name = "";
+        _this.formData.content = "";
+        _this.commentSent = true;
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error.response.data.errors);
+        _this.formErrors = error.response.data.errors;
+      });
+    }
+  },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get("/api/posts/" + this.$route.params.slug).then(function (response) {
-      _this.post = response.data;
+      _this2.post = response.data;
+      _this2.formData.post_id = _this2.post.id;
     })["catch"](function (error) {
-      _this.$router.push({
+      _this2.$router.push({
         name: "not-found"
       });
     });
@@ -2515,7 +2588,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "h1[data-v-8db7c630] {\n  margin-bottom: 20px;\n}\nul[data-v-8db7c630] {\n  padding-left: 20px;\n}\nul li[data-v-8db7c630] {\n  margin: 15px 0;\n}\nul li .title a[data-v-8db7c630] {\n  color: black;\n  text-decoration: none;\n}\nul li .title a[data-v-8db7c630]:hover {\n  color: lightseagreen;\n}\nul li > div[data-v-8db7c630] {\n  margin: 4px 0;\n}\nul li > div .tag[data-v-8db7c630] {\n  margin: 6px 0;\n}", ""]);
+exports.push([module.i, "h1[data-v-8db7c630] {\n  margin-bottom: 20px;\n}\nul[data-v-8db7c630] {\n  padding-left: 20px;\n}\nul li[data-v-8db7c630] {\n  margin: 15px 0;\n}\nul li .title a[data-v-8db7c630], ul li .category a[data-v-8db7c630], ul li .tags a[data-v-8db7c630] {\n  color: black;\n  text-decoration: none;\n}\nul li .title a[data-v-8db7c630]:hover, ul li .category a[data-v-8db7c630]:hover, ul li .tags a[data-v-8db7c630]:hover {\n  color: lightseagreen;\n}\nul li > div[data-v-8db7c630] {\n  margin: 4px 0;\n}\nul li > div .tag[data-v-8db7c630] {\n  margin: 6px 0;\n}", ""]);
 
 // exports
 
@@ -2610,7 +2683,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".post[data-v-4017f840] {\n  width: 50%;\n}\n.post > *[data-v-4017f840] {\n  margin: 15px 0;\n}\n.post h2[data-v-4017f840] {\n  text-transform: uppercase;\n}\n.post .image[data-v-4017f840] {\n  width: 500px;\n}\n.post .image img[data-v-4017f840] {\n  width: 100%;\n}\n.post .category a[data-v-4017f840], .post .tags a[data-v-4017f840] {\n  color: black;\n  text-decoration: none;\n}\n.post .category a[data-v-4017f840]:hover, .post .tags a[data-v-4017f840]:hover {\n  color: lightseagreen;\n}\n.post .tags[data-v-4017f840] {\n  display: flex;\n}\n.post .tags .tag[data-v-4017f840] {\n  margin-left: 5px;\n}\n.post .tags .tag[data-v-4017f840]:not(:last-child)::after {\n  content: \",\";\n}", ""]);
+exports.push([module.i, ".post[data-v-4017f840] {\n  width: 50%;\n}\n.post > *[data-v-4017f840] {\n  margin: 15px 0;\n}\n.post h2[data-v-4017f840] {\n  text-transform: uppercase;\n}\n.post .image[data-v-4017f840] {\n  width: 500px;\n}\n.post .image img[data-v-4017f840] {\n  width: 100%;\n}\n.post .category a[data-v-4017f840],\n.post .tags a[data-v-4017f840] {\n  color: black;\n  text-decoration: none;\n}\n.post .category a[data-v-4017f840]:hover,\n.post .tags a[data-v-4017f840]:hover {\n  color: lightseagreen;\n}\n.post .tags[data-v-4017f840] {\n  display: flex;\n}\n.post .tags .tag[data-v-4017f840] {\n  margin-left: 5px;\n}\n.post .tags .tag[data-v-4017f840]:not(:last-child)::after {\n  content: \",\";\n}", ""]);
 
 // exports
 
@@ -4069,10 +4142,33 @@ var render = function () {
           ),
           _vm._v(" "),
           post.category != null
-            ? _c("div", { staticClass: "category" }, [
-                _c("strong", [_vm._v("Category: ")]),
-                _vm._v(_vm._s(post.category.name) + "\n            "),
-              ])
+            ? _c(
+                "div",
+                { staticClass: "category" },
+                [
+                  _c("strong", [_vm._v("Category: ")]),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "category",
+                          params: { slug: post.category.slug },
+                        },
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(post.category.name) +
+                          "\n                "
+                      ),
+                    ]
+                  ),
+                ],
+                1
+              )
             : _vm._e(),
           _vm._v(" "),
           post.tags.length > 0
@@ -4082,13 +4178,31 @@ var render = function () {
                 _c(
                   "ul",
                   _vm._l(post.tags, function (tag, i) {
-                    return _c("li", { key: i, staticClass: "tag" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(tag.name) +
-                          "\n                    "
-                      ),
-                    ])
+                    return _c(
+                      "li",
+                      { key: i, staticClass: "tag" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "tag",
+                                params: { slug: tag.slug },
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(tag.name) +
+                                "\n                        "
+                            ),
+                          ]
+                        ),
+                      ],
+                      1
+                    )
                   }),
                   0
                 ),
@@ -4558,6 +4672,109 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "content" }, [
       _vm._v("\n        " + _vm._s(_vm.post.content) + "\n    "),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "comments" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.newComment()
+            },
+          },
+        },
+        [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputUsername" } }, [
+              _vm._v("Username"),
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.name,
+                  expression: "formData.name",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "inputUsername",
+                placeholder: "Insert the username",
+              },
+              domProps: { value: _vm.formData.name },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formData, "name", $event.target.value)
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "exampleFormControlTextarea1" } }, [
+              _vm._v("Example textarea"),
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.content,
+                  expression: "formData.content",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: { id: "exampleFormControlTextarea1", rows: "3" },
+              domProps: { value: _vm.formData.content },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formData, "content", $event.target.value)
+                },
+              },
+            }),
+            _vm._v(" "),
+            _vm.formErrors.content
+              ? _c("div", [
+                  _c(
+                    "ul",
+                    _vm._l(_vm.formErrors.content, function (error, i) {
+                      return _c("li", { key: i }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(error) +
+                            "\n                        "
+                        ),
+                      ])
+                    }),
+                    0
+                  ),
+                ])
+              : _vm._e(),
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-light", attrs: { type: "submit" } },
+            [_vm._v("Submit")]
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _vm.commentSent
+        ? _c("div", { staticClass: "comment-sent" }, [_vm._v("Comment sent!")])
+        : _vm._e(),
     ]),
   ])
 }
