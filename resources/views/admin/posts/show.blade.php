@@ -23,7 +23,7 @@
                             @if (count($post->tags) > 0)
                                 <h5 class="mt-3">Tags:</h5>
                                 @foreach ($post->tags as $tag)
-                                    <span class="badge badge-primary">{{$tag->name}}</span>
+                                    <span class="badge badge-primary">{{ $tag->name }}</span>
                                 @endforeach
                             @endif
                         </div>
@@ -63,6 +63,47 @@
                                 </div>
                             </div>
                         </div>
+                        @if (count($post->comments) > 0)
+                            <div id="comments" class="my-4">
+                                <h5>Comments:</h5>
+                                <table class="table">
+                                    <tbody>
+                                        @foreach ($post->comments as $key => $comment)
+                                            <tr>
+                                                <th>{{ $key + 1 }}</th>
+                                                <td>{{ $comment->content }}</td>
+                                                <td class="d-flex">
+                                                    @if (!$comment->approved)
+                                                        <form action="{{ route('comments.approves', $comment->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit"
+                                                                class="btn btn-success btnP">Approves</button>
+                                                        </form>
+                                                    @else
+                                                        <form action="{{ route('comments.disapproves', $comment->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <button type="submit"
+                                                                class="btn btn-info btnP">Disapproves</button>
+                                                        </form>
+                                                    @endif
+                                                    <form action="{{ route('comments.destroy', $comment->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="btn btn-danger btnP ml-1">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -1,29 +1,31 @@
 <template>
-    <div class="category">
-        <h2>{{ category.name }}</h2>
-        <div v-if="category.posts">
-            <div v-if="category.posts.length">
-                <h4>Associated posts:</h4>
-            <ul>
-                <li v-for="post in category.posts" :key="post.id">
-                    <router-link
-                        :to="{ name: 'post', params: { slug: post.slug } }"
-                    >
-                        {{ post.title }}
-                    </router-link>
-                </li>
-            </ul>
-            </div>
+    <div v-if="category.name">
+        <SectionTitle :name="category.name" />
+        <div class="latest-posts">
+            <LatestPost
+                v-for="post in category.posts"
+                :key="post.id"
+                :post="post"
+                :authorId="post.author_id"
+            />
         </div>
     </div>
 </template>
 
 <script>
+import SectionTitle from "../components/commons/SectionTitle.vue";
+import LatestPost from "../components/commons/LatestPost.vue";
+
 export default {
-    name: "Category",
+    name: "Tag",
+    components: {
+        SectionTitle,
+        LatestPost,
+    },
     data() {
         return {
             category: {},
+            author: {},
         };
     },
     created() {
@@ -40,24 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.category {
-    > * {
-        margin: 15px 0;
-    }
-    ul {
-        padding-left: 20px;
-
-        li {
-            margin: 10px;
-
-            a {
-                color: black;
-                text-decoration: none;
-                &:hover {
-                    color: lightseagreen;
-                }
-            }
-        }
-    }
+div::v-deep a:first-of-type .latest-post {
+    border: 1px solid transparent;
 }
 </style>

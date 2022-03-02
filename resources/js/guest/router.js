@@ -10,6 +10,7 @@ import CategoriesList from "./pages/CategoriesList";
 import Category from "./pages/Category";
 import TagsList from "./pages/TagsList";
 import Tag from "./pages/Tag";
+import Author from "./pages/Author";
 import PageNotFound from "./pages/PageNotFound";
 
 const router = new VueRouter({
@@ -49,6 +50,11 @@ const router = new VueRouter({
             path: "/tags/:slug",
             name: "tag",
             component: Tag,
+        },
+        {
+            path: "/authors/:slug",
+            name: "author",
+            component: Author,
         },
         // error 404
         {

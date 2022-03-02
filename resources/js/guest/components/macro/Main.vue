@@ -14,6 +14,8 @@ export default {
 
 <style lang="scss" scoped>
 main {
+    width: 86%;
+    padding-left: 25px;
     overflow-y: auto;
 
     .container {

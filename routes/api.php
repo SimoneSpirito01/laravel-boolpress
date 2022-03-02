@@ -32,5 +32,9 @@ Route::get('/categories/{slug}', 'Api\CategoryController@show');
 Route::get('/tags', 'Api\TagController@index');
 Route::get('/tags/{slug}', 'Api\TagController@show');
 
+// api authors
+Route::get('/authors/{slug}', 'Api\AuthorController@show');
+Route::get('/authors-id/{id}', 'Api\AuthorController@id');
+
 // apc comments
 Route::post('/comments', 'Api\CommentController@store');

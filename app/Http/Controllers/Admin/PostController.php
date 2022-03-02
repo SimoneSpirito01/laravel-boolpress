@@ -15,7 +15,7 @@ class PostController extends Controller
 {
 
     protected $validation = [
-        'title' => 'required|string|max:100',
+        'title' => 'required|string|max:200',
         'content' => 'required',
         'published' => 'sometimes|accepted',
         'category_id' => 'nullable|exists:categories,id',

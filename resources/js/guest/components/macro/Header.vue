@@ -4,27 +4,15 @@
             <nav>
                 <ul>
                     <li>
+                        <Logo/>
+                    </li>
+                    <li>
                         <router-link :to="{ name: 'home' }">Home</router-link>
                     </li>
                     <li v-for="category in categories" :key="category.id">
                         <router-link :to="{ name: 'category', params: { slug:category.slug } }">
                             {{category.name}}
                         </router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{ name: 'categories' }"
-                            >Categories</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link :to="{ name: 'tags' }"
-                            >Tags</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link :to="{ name: 'about' }"
-                            >About Us</router-link
-                        >
                     </li>
                     <li><a href="/admin/home">Reserved area</a></li>
                 </ul>
@@ -34,8 +22,13 @@
 </template>
 
 <script>
+import Logo from '../commons/Logo.vue'
+
 export default {
     name: "Header",
+    components: {
+        Logo
+    },
     data() {
         return {
             categories: []
@@ -59,7 +52,7 @@ header {
     width: 14%;
     ul {
         list-style: none;
-        padding: 25px 30px;
+        padding: 35px 30px;
 
         li {
             margin-bottom: 12px;

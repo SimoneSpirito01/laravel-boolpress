@@ -40,7 +40,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-info"><a class="text-white"
                                                         href="{{ route('posts.show', $post->slug) }}">View</a></button>
-                                                <button type="button" class="btn btn-warning"><a class="text-white"
+                                                <button type="button" class="btn btn-warning mt-1"><a class="text-white"
                                                         href="{{ route('posts.edit', $post->slug) }}">Edit</a></button>
                                                 <button type="button" class="btn btn-danger mt-1 btnToggle btnP"
                                                     data-toggle="modal" data-target="#exampleModal"

@@ -1,22 +1,24 @@
 <template>
-    <div class="latest-posts">
+    <div v-if="posts.length > 0">
         <h4>The Latest</h4>
-        <LatestPost v-for="post in posts" :key="post.id" :post="post"/>
+        <div class="latest-posts">
+            <LatestPost v-for="post in posts" :key="post.id" :post="post" />
+        </div>
     </div>
 </template>
 
 <script>
-import LatestPost from '../commons/LatestPost.vue'
+import LatestPost from "../commons/LatestPost.vue";
 
 export default {
-    name: 'LatestPosts',
+    name: "LatestPosts",
     components: {
-        LatestPost
+        LatestPost,
     },
     data() {
         return {
-            posts: []
-        }
+            posts: [],
+        };
     },
     created() {
         axios
@@ -27,18 +29,13 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-    }
-}
+    },
+};
 </script>
 
 <style lang="scss" scoped>
-
-.latest-posts {
-    h4 {
-        font-size: 22.5px;
-        padding-bottom: 15px;
-        border-bottom: 2px solid #f1f1f1;
-    }
+h4 {
+    font-size: 22.5px;
+    padding-bottom: 15px;
 }
-
 </style>

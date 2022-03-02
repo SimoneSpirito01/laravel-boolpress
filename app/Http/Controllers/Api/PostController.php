@@ -17,7 +17,9 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        $post = Post::where('slug', $slug)->with(['category', 'tags'])->first();
+        $post = Post::where('slug', $slug)->with(['category', 'tags', 'author', 'comments' => function($query) {
+            $query->where('approved', 1);
+        }])->first();
 
         if (empty($post)) {
             return response()->json(['message' => 'page not found'], 404);
@@ -28,7 +30,7 @@ class PostController extends Controller
     
     public function main()
     {
-        $posts = Post::with(['category', 'tags', 'author'])->take(5)->get();
+        $posts = Post::inRandomOrder()->limit(5)->with(['category', 'tags', 'author'])->get();
         
         return response()->json($posts);
     }

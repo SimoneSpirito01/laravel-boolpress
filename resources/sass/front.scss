@@ -1,36 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+@-webkit-keyframes shadow-pop-br {
+    0% {
+        -webkit-box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e,
+            0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
+        box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e,
+            0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
+        -webkit-transform: translateX(0) translateY(0);
+        transform: translateX(0) translateY(0);
+    }
+    100% {
+        -webkit-box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e,
+            4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e,
+            8px 8px #3e3e3e;
+        box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e,
+            4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e,
+            8px 8px #3e3e3e;
+        background-color: #f1f1f1;
+        -webkit-transform: translateX(-8px) translateY(-8px);
+        transform: translateX(-8px) translateY(-8px);
+    }
+}
+@keyframes shadow-pop-br {
+    0% {
+        -webkit-box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e,
+            0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
+        box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e,
+            0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
+        -webkit-transform: translateX(0) translateY(0);
+        transform: translateX(0) translateY(0);
+    }
+    100% {
+        -webkit-box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e,
+            4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e,
+            8px 8px #3e3e3e;
+        box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e,
+            4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e,
+            8px 8px #3e3e3e;
+        background-color: #f1f1f1;
+        -webkit-transform: translateX(-8px) translateY(-8px);
+        transform: translateX(-8px) translateY(-8px);
+    }
+}
 
 // typhography
 
 @font-face {
-    font-family: 'Aktiv';
+    font-family: "Aktiv";
     src: url(./fonts/TTF/AktivGrotesk-Light.ttf);
     font-weight: 200;
 }
 @font-face {
-    font-family: 'Aktiv';
+    font-family: "Aktiv";
     src: url(./fonts/TTF/AktivGrotesk-Regular.ttf);
     font-weight: 400;
 }
 @font-face {
-    font-family: 'Aktiv';
+    font-family: "Aktiv";
     src: url(./fonts/TTF/AktivGrotesk-Medium.ttf);
     font-weight: 600;
 }
 @font-face {
-    font-family: 'Aktiv';
+    font-family: "Aktiv";
     src: url(./fonts/TTF/AktivGrotesk-Bold.ttf);
     font-weight: 700;
 }
 @font-face {
-    font-family: 'Aktiv';
+    font-family: "Aktiv";
     src: url(./fonts/TTF/AktivGrotesk-XBold.ttf);
     font-weight: 800;
+}
+@font-face {
+    font-family: "Nimbus Sans";
+    src: url(./fonts/Nimbus-Sans-D-OT-Light_32752.ttf);
 }
 
 :root {
     --nav-color: #777777;
-    --green: #4abf90;
+    --green: #a800a0;
     --author-name: #333333;
 }
 
@@ -40,5 +86,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Aktiv', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Aktiv", sans-serif;
 }

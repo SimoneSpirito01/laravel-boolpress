@@ -23,6 +23,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     Route::resource('tags', 'TagController');
     Route::resource('authors', 'AuthorController');
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::patch('comments-approves/{id}', 'CommentController@approves')->name('comments.approves');
+    Route::patch('comments-disapproves/{id}', 'CommentController@disapproves')->name('comments.disapproves');
+    Route::delete('comments/{id}', 'CommentController@destroy')->name('comments.destroy');
 });
 
 Route::get("{any?}", function() {

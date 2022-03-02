@@ -1,29 +1,29 @@
 <template>
-    <div class="tag">
-        <h2>{{ tag.name }}</h2>
-        <div v-if="tag.posts">
-            <div v-if="tag.posts.length">
-                <h4>Associated posts:</h4>
-            <ul>
-                <li v-for="post in tag.posts" :key="post.id">
-                    <router-link
-                        :to="{ name: 'post', params: { slug: post.slug } }"
-                    >
-                        {{ post.title }}
-                    </router-link>
-                </li>
-            </ul>
-            </div>
-        </div>
+    <div v-if="tag.name">
+        <SectionTitle :name="title" />
+        <LatestPost
+            v-for="post in tag.posts"
+            :key="post.id"
+            :post="post"
+            :authorId="post.author_id"
+        />
     </div>
 </template>
 
 <script>
+import SectionTitle from "../components/commons/SectionTitle.vue";
+import LatestPost from "../components/commons/LatestPost.vue";
+
 export default {
     name: "Tag",
+    components: {
+        SectionTitle,
+        LatestPost,
+    },
     data() {
         return {
             tag: {},
+            author: {}
         };
     },
     created() {
@@ -36,28 +36,22 @@ export default {
                 this.$router.push({ name: "not-found" });
             });
     },
+    computed: {
+        title() {
+            if(this.tag.name) {
+                return this.tag.name[0].toUpperCase() + this.tag.name.slice(1);
+            } else {
+                return ''
+            }
+        }
+    }
 };
 </script>
 
 <style lang="scss" scoped>
-.tag {
-    > * {
-        margin: 15px 0;
-    }
-    ul {
-        padding-left: 20px;
 
-        li {
-            margin: 10px;
-
-            a {
-                color: black;
-                text-decoration: none;
-                &:hover {
-                    color: lightseagreen;
-                }
-            }
-        }
-    }
+div::v-deep a:first-of-type .latest-post {
+    border: 1px solid transparent;
 }
+
 </style>
