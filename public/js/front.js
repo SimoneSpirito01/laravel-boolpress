@@ -7483,6 +7483,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../commons/AuthorName.vue */ "./resources/js/guest/components/commons/AuthorName.vue");
+/* harmony import */ var _share_functionsShared_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../share/functionsShared.js */ "./resources/js/guest/share/functionsShared.js");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7508,20 +7515,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "LatestPost",
   components: {
     AuthorName: _commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  data: function data() {
-    return {
-      authorGot: this.author
-    };
-  },
   props: {
-    post: Object,
-    author: Object,
-    authorId: Number
+    post: Object
   },
   computed: {
     shortContent: function shortContent() {
@@ -7533,17 +7534,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this = this;
-
-    if (this.authorId) {
-      axios.get("/api/authors-id/" + this.authorId).then(function (response) {
-        _this.authorGot = response.data;
-      })["catch"](function (error) {
-        _this.$router.push({
-          name: "not-found"
-        });
-      });
-    }
+    this.post.formattedDate = _share_functionsShared_js__WEBPACK_IMPORTED_MODULE_1__["default"].formatDate(this.post.created_at);
   }
 });
 
@@ -8040,7 +8031,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8051,8 +8041,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      category: {},
-      author: {}
+      category: {}
     };
   },
   created: function created() {
@@ -8132,6 +8121,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/commons/AuthorName.vue */ "./resources/js/guest/components/commons/AuthorName.vue");
 /* harmony import */ var _components_sections_LatestPosts_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/sections/LatestPosts.vue */ "./resources/js/guest/components/sections/LatestPosts.vue");
+/* harmony import */ var _share_functionsShared_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../share/functionsShared.js */ "./resources/js/guest/share/functionsShared.js");
 //
 //
 //
@@ -8266,6 +8256,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8294,20 +8292,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.formData.name = "";
         _this.formData.content = "";
         _this.commentSent = true;
-        console.log(response);
       })["catch"](function (error) {
-        console.log(error.response.data.errors);
         _this.formErrors = error.response.data.errors;
         _this.commentSent = false;
       });
-    },
-    formatDate: function formatDate(date) {
-      var formattedDate = {};
-      var array = [];
-      array = date.split("T");
-      formattedDate["date"] = array[0];
-      formattedDate["hour"] = array[1].slice(0, 5);
-      return formattedDate;
     }
   },
   created: function created() {
@@ -8317,10 +8305,11 @@ __webpack_require__.r(__webpack_exports__);
       var self = _this2;
       self.post = response.data;
       self.formData.post_id = self.post.id;
+      self.post.formattedDate = _share_functionsShared_js__WEBPACK_IMPORTED_MODULE_2__["default"].formatDate(self.post.created_at);
 
       if (self.post.comments.length > 0) {
         self.post.comments.forEach(function (comment) {
-          comment.formattedDate = self.formatDate(comment.created_at);
+          comment.formattedDate = _share_functionsShared_js__WEBPACK_IMPORTED_MODULE_2__["default"].formatDate(comment.created_at);
         });
       }
     })["catch"](function (error) {
@@ -8368,7 +8357,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8379,8 +8367,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      tag: {},
-      author: {}
+      tag: {}
     };
   },
   created: function created() {
@@ -8500,7 +8487,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "a[data-v-6cdcde02] {\n  display: inline-block;\n  text-decoration: none;\n  color: initial;\n}\na[data-v-6cdcde02]:hover {\n  -webkit-animation: shadow-pop-br 0.3s both;\n          animation: shadow-pop-br 0.3s both;\n  padding: 0 20px;\n}\na:hover + a .latest-post[data-v-6cdcde02], a:hover .latest-post[data-v-6cdcde02] {\n  border: none;\n}\na .latest-post[data-v-6cdcde02] {\n  display: flex;\n  padding: 30px 0;\n  border-top: 2px solid #f1f1f1;\n}\na .latest-post > *[data-v-6cdcde02] {\n  width: calc((100% - 60px) / 3);\n}\na .latest-post .left[data-v-6cdcde02] {\n  font-size: 16px;\n}\na .latest-post .left .title[data-v-6cdcde02] {\n  font-size: 35px;\n  margin-bottom: 10px;\n}\na .latest-post .left .date[data-v-6cdcde02] {\n  color: var(--nav-color);\n}\na .latest-post .center[data-v-6cdcde02] {\n  margin: 0 30px;\n}\na .latest-post .center .content[data-v-6cdcde02] {\n  max-height: 300px;\n  color: var(--nav-color) !important;\n}\na .latest-post .center .content[data-v-6cdcde02] p {\n  font-size: 20px;\n}\na .latest-post .center .content[data-v-6cdcde02] a {\n  color: var(--nav-color);\n  text-decoration: none;\n  pointer-events: none;\n}\na .latest-post .right .image img[data-v-6cdcde02] {\n  width: 100%;\n}\n.latest-posts:hover .latest-post[data-v-6cdcde02]:not(:hover) {\n  opacity: 0.8;\n}", ""]);
+exports.push([module.i, "a[data-v-6cdcde02] {\n  display: inline-block;\n  text-decoration: none;\n  color: initial;\n}\na[data-v-6cdcde02]:hover {\n  -webkit-animation: shadow-pop-br 0.3s both;\n          animation: shadow-pop-br 0.3s both;\n  padding: 0 20px;\n}\na:hover + a .latest-post[data-v-6cdcde02], a:hover .latest-post[data-v-6cdcde02] {\n  border: none;\n}\na .latest-post[data-v-6cdcde02] {\n  display: flex;\n  padding: 30px 0;\n  border-top: 2px solid #f1f1f1;\n}\na .latest-post > *[data-v-6cdcde02] {\n  width: calc((100% - 60px) / 3);\n}\na .latest-post .left[data-v-6cdcde02] {\n  font-size: 16px;\n}\na .latest-post .left .title[data-v-6cdcde02] {\n  font-size: 35px;\n  margin-bottom: 10px;\n}\na .latest-post .left .date[data-v-6cdcde02] {\n  color: var(--nav-color);\n  display: flex;\n}\na .latest-post .left .date .slash[data-v-6cdcde02] {\n  color: var(--green);\n  margin: 0 5px;\n}\na .latest-post .center[data-v-6cdcde02] {\n  margin: 0 30px;\n}\na .latest-post .center .content[data-v-6cdcde02] {\n  max-height: 300px;\n  color: var(--nav-color) !important;\n}\na .latest-post .center .content[data-v-6cdcde02] p {\n  font-size: 20px;\n}\na .latest-post .center .content[data-v-6cdcde02] a {\n  color: var(--nav-color);\n  text-decoration: none;\n  pointer-events: none;\n}\na .latest-post .right .image img[data-v-6cdcde02] {\n  width: 100%;\n}\n.latest-posts:hover .latest-post[data-v-6cdcde02]:not(:hover) {\n  opacity: 0.8;\n}", ""]);
 
 // exports
 
@@ -8747,7 +8734,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".single-post-page .post[data-v-4017f840] {\n  padding: 35px 25px 35px 65px;\n}\n.single-post-page .post .top .title[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .title h1[data-v-4017f840] {\n  font-size: 45px;\n}\n.single-post-page .post .top .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .info .left[data-v-4017f840] {\n  display: flex;\n}\n.single-post-page .post .top .info .left span[data-v-4017f840] {\n  margin: 0 15px;\n  color: var(--green);\n}\n.single-post-page .post .top .info .left .date[data-v-4017f840] {\n  font-size: 15px;\n  font-weight: 300;\n  color: var(--nav-color);\n}\n.single-post-page .post .top .info .right[data-v-4017f840] {\n  display: flex;\n  align-items: center;\n}\n.single-post-page .post .top .info .right a[data-v-4017f840] {\n  display: block;\n  font-size: 14px;\n  font-family: \"Nimbus Sans\", sans-serif;\n  color: var(--nav-color);\n  text-decoration: none;\n  margin-left: 8px;\n}\n.single-post-page .post .top .info .right .icon-comment[data-v-4017f840] {\n  width: 20px;\n}\n.single-post-page .post .top .info .right .icon-comment path[data-v-4017f840] {\n  fill: var(--green);\n}\n.single-post-page .post .top .tags[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .tags h4[data-v-4017f840] {\n  font-size: 18px;\n  margin-right: 17px;\n}\n.single-post-page .post .top .tags .tags-container[data-v-4017f840] {\n  margin-top: 12px 0;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840] {\n  margin-right: 12px;\n  color: var(--green);\n  background: var(--nav-color);\n  border-radius: 20px;\n  padding: 2px 6px;\n  font-size: 14px;\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]::before {\n  content: \"#\";\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page .post .bottom img[data-v-4017f840] {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content {\n  font-size: 20px;\n  color: var(--author-name);\n  letter-spacing: -0.1px;\n  overflow-wrap: break-word;\n  line-height: 1.5;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content img {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p {\n  margin-bottom: 20px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p a {\n  color: var(--green);\n  border-bottom: 1px solid #f1f1f1;\n  text-decoration: none;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content h3 {\n  color: black;\n  font-family: \"Aktiv\", sans-serif;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom #comments[data-v-4017f840] {\n  margin-top: 60px;\n  margin-bottom: 120px;\n  display: flex;\n}\n.single-post-page .post .bottom #comments .left[data-v-4017f840] {\n  width: 60%;\n}\n.single-post-page .post .bottom #comments .left h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 20px;\n}\n.single-post-page .post .bottom #comments .left .comments-empty[data-v-4017f840] {\n  font-size: 20px;\n  color: var(--author-name);\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .left .comment[data-v-4017f840] {\n  margin-bottom: 20px;\n  cursor: pointer;\n}\n.single-post-page .post .bottom #comments .left .comment:hover .info .name[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .left .comment .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n}\n.single-post-page .post .bottom #comments .left .comment .info .name[data-v-4017f840] {\n  color: var(--nav-color);\n  margin-bottom: 5px;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date[data-v-4017f840] {\n  font-size: 13px;\n  font-weight: 300;\n  color: var(--nav-color);\n}\n.single-post-page .post .bottom #comments .left .comment .info .date > *[data-v-4017f840] {\n  display: inline-block;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .hour[data-v-4017f840] {\n  text-align: right;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .slash[data-v-4017f840] {\n  color: var(--green);\n  margin: 0 2px;\n}\n.single-post-page .post .bottom #comments .left .comment .content[data-v-4017f840] {\n  color: var(--author-name);\n}\n.single-post-page .post .bottom #comments .right[data-v-4017f840] {\n  width: 40%;\n  padding-left: 50px;\n}\n.single-post-page .post .bottom #comments .right h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container[data-v-4017f840] {\n  position: relative;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container .my_caret[data-v-4017f840] {\n  font-size: 18px;\n  position: absolute;\n  top: 15px;\n  left: -10px;\n  color: black;\n  opacity: 0;\n  transition: 0.3s;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840] {\n  width: 100%;\n  font-size: 16px;\n  color: var(--nav-color);\n  border: none;\n  border-bottom: 1px solid var(--nav-color);\n  padding: 6px 0;\n  margin-top: 10px;\n  margin-bottom: 15px;\n  resize: none;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840]:focus,\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840]:focus {\n  outline: none;\n  border-color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .comment-container input:focus + .my_caret[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea:focus + .my_caret[data-v-4017f840] {\n  opacity: 1;\n  color: var(--green);\n  left: 0;\n}\n.single-post-page .post .bottom #comments .right form .button[data-v-4017f840] {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .button .comment-sent[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .button.button-end[data-v-4017f840] {\n  justify-content: space-between;\n  align-items: center;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840] {\n  font-size: 14px;\n  border: none;\n  background-color: var(--nav-color);\n  border-radius: 40px;\n  padding: 10px 20px;\n  color: white;\n  cursor: pointer;\n  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page[data-v-4017f840] .latest {\n  padding-left: 65px;\n}", ""]);
+exports.push([module.i, ".single-post-page .post[data-v-4017f840] {\n  padding: 35px 25px 35px 65px;\n}\n.single-post-page .post .top .title[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .title h1[data-v-4017f840] {\n  font-size: 45px;\n}\n.single-post-page .post .top .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .info .left[data-v-4017f840] {\n  display: flex;\n}\n.single-post-page .post .top .info .left span[data-v-4017f840] {\n  margin: 0 15px;\n  color: var(--green);\n}\n.single-post-page .post .top .info .left .date[data-v-4017f840] {\n  font-size: 15px;\n  font-weight: 300;\n  color: var(--nav-color);\n  display: flex;\n  margin-left: 20px;\n}\n.single-post-page .post .top .info .left .date .slash[data-v-4017f840] {\n  color: var(--green);\n  margin: 0 5px;\n  font-weight: 500;\n}\n.single-post-page .post .top .info .right[data-v-4017f840] {\n  display: flex;\n  align-items: center;\n}\n.single-post-page .post .top .info .right a[data-v-4017f840] {\n  display: block;\n  font-size: 14px;\n  font-family: \"Nimbus Sans\", sans-serif;\n  color: var(--nav-color);\n  text-decoration: none;\n  margin-left: 8px;\n}\n.single-post-page .post .top .info .right .icon-comment[data-v-4017f840] {\n  width: 20px;\n}\n.single-post-page .post .top .info .right .icon-comment path[data-v-4017f840] {\n  fill: var(--green);\n}\n.single-post-page .post .top .tags[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .tags h4[data-v-4017f840] {\n  font-size: 18px;\n  margin-right: 17px;\n}\n.single-post-page .post .top .tags .tags-container[data-v-4017f840] {\n  margin-top: 12px 0;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840] {\n  margin-right: 12px;\n  color: var(--green);\n  background: var(--nav-color);\n  border-radius: 20px;\n  padding: 2px 6px;\n  font-size: 14px;\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]::before {\n  content: \"#\";\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page .post .bottom img[data-v-4017f840] {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content {\n  font-size: 20px;\n  color: var(--author-name);\n  letter-spacing: -0.1px;\n  overflow-wrap: break-word;\n  line-height: 1.5;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content img {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p {\n  margin-bottom: 20px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p a {\n  color: var(--green);\n  border-bottom: 1px solid #f1f1f1;\n  text-decoration: none;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content h3 {\n  color: black;\n  font-family: \"Aktiv\", sans-serif;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom #comments[data-v-4017f840] {\n  margin-top: 60px;\n  margin-bottom: 120px;\n  display: flex;\n}\n.single-post-page .post .bottom #comments .left[data-v-4017f840] {\n  width: 60%;\n}\n.single-post-page .post .bottom #comments .left h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 20px;\n}\n.single-post-page .post .bottom #comments .left .comments-empty[data-v-4017f840] {\n  font-size: 20px;\n  color: var(--author-name);\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .left .comment[data-v-4017f840] {\n  margin-bottom: 20px;\n  cursor: pointer;\n}\n.single-post-page .post .bottom #comments .left .comment:hover .info .name[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .left .comment .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n}\n.single-post-page .post .bottom #comments .left .comment .info .name[data-v-4017f840] {\n  color: var(--nav-color);\n  margin-bottom: 5px;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date[data-v-4017f840] {\n  font-size: 13px;\n  font-weight: 300;\n  color: var(--nav-color);\n}\n.single-post-page .post .bottom #comments .left .comment .info .date > *[data-v-4017f840] {\n  display: inline-block;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .hour[data-v-4017f840] {\n  text-align: right;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .slash[data-v-4017f840] {\n  color: var(--green);\n  margin: 0 2px;\n}\n.single-post-page .post .bottom #comments .left .comment .content[data-v-4017f840] {\n  color: var(--author-name);\n}\n.single-post-page .post .bottom #comments .right[data-v-4017f840] {\n  width: 40%;\n  padding-left: 50px;\n}\n.single-post-page .post .bottom #comments .right h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container[data-v-4017f840] {\n  position: relative;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container .my_caret[data-v-4017f840] {\n  font-size: 18px;\n  position: absolute;\n  top: 15px;\n  left: -10px;\n  color: black;\n  opacity: 0;\n  transition: 0.3s;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840] {\n  width: 100%;\n  font-size: 16px;\n  color: var(--nav-color);\n  border: none;\n  border-bottom: 1px solid var(--nav-color);\n  padding: 6px 0;\n  margin-top: 10px;\n  margin-bottom: 15px;\n  resize: none;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840]:focus,\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840]:focus {\n  outline: none;\n  border-color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .comment-container input:focus + .my_caret[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea:focus + .my_caret[data-v-4017f840] {\n  opacity: 1;\n  color: var(--green);\n  left: 0;\n}\n.single-post-page .post .bottom #comments .right form .button[data-v-4017f840] {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .button .comment-sent[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .button.button-end[data-v-4017f840] {\n  justify-content: space-between;\n  align-items: center;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840] {\n  font-size: 14px;\n  border: none;\n  background-color: var(--nav-color);\n  border-radius: 40px;\n  padding: 10px 20px;\n  color: white;\n  cursor: pointer;\n  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page[data-v-4017f840] .latest {\n  padding-left: 65px;\n}", ""]);
 
 // exports
 
@@ -10582,18 +10569,26 @@ var render = function () {
               ),
             ]),
             _vm._v(" "),
-            _c("AuthorName", {
-              attrs: {
-                author: _vm.post.author ? _vm.post.author : _vm.authorGot,
-              },
-            }),
+            _c("AuthorName", { attrs: { author: _vm.post.author } }),
             _vm._v(" "),
             _c("div", { staticClass: "date" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.post.created_at) +
-                  "\n            "
-              ),
+              _c("div", { staticClass: "hour" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.post.formattedDate.hour) +
+                    "\n                "
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "slash" }, [_vm._v("/")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "year" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.post.formattedDate.date) +
+                    "\n                "
+                ),
+              ]),
             ]),
           ],
           1
@@ -11137,10 +11132,7 @@ var render = function () {
             "div",
             { staticClass: "latest-posts" },
             _vm._l(_vm.category.posts, function (post) {
-              return _c("LatestPost", {
-                key: post.id,
-                attrs: { post: post, authorId: post.author_id },
-              })
+              return _c("LatestPost", { key: post.id, attrs: { post: post } })
             }),
             1
           ),
@@ -11251,10 +11243,24 @@ var render = function () {
                   [
                     _c("AuthorName", { attrs: { author: _vm.post.author } }),
                     _vm._v(" "),
-                    _c("span", { staticClass: "slash" }, [_vm._v("/")]),
-                    _vm._v(" "),
                     _c("div", { staticClass: "date" }, [
-                      _vm._v(_vm._s(_vm.post.created_at)),
+                      _c("div", { staticClass: "hour" }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.post.formattedDate.hour) +
+                            "\n                        "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "slash" }, [_vm._v("/")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "year" }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.post.formattedDate.date) +
+                            "\n                        "
+                        ),
+                      ]),
                     ]),
                   ],
                   1
@@ -11583,10 +11589,7 @@ var render = function () {
           _c("SectionTitle", { attrs: { name: _vm.title } }),
           _vm._v(" "),
           _vm._l(_vm.tag.posts, function (post) {
-            return _c("LatestPost", {
-              key: post.id,
-              attrs: { post: post, authorId: post.author_id },
-            })
+            return _c("LatestPost", { key: post.id, attrs: { post: post } })
           }),
         ],
         2
@@ -28929,6 +28932,31 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
+
+/***/ }),
+
+/***/ "./resources/js/guest/share/functionsShared.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/guest/share/functionsShared.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0___default.a.observable({
+  formatDate: function formatDate(date) {
+    var formattedDate = {};
+    var array = [];
+    array = date.split("T");
+    formattedDate["date"] = array[0];
+    formattedDate["hour"] = array[1].slice(0, 5);
+    return formattedDate;
+  }
+}));
 
 /***/ }),
 

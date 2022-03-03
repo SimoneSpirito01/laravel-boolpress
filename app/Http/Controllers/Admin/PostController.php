@@ -98,6 +98,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::where('slug', $id)->first();
+        $post->comments = $post->comments->reverse()->values();
         return view('admin.posts.show', compact('post'));
     }
 

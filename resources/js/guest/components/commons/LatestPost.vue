@@ -5,9 +5,15 @@
                 <h2 class="title">
                     {{ post.title }}
                 </h2>
-                <AuthorName :author="post.author ? post.author : authorGot" />
+                <AuthorName :author="post.author" />
                 <div class="date">
-                    {{ post.created_at }}
+                    <div class="hour">
+                        {{ post.formattedDate.hour }}
+                    </div>
+                    <div class="slash">/</div>
+                    <div class="year">
+                        {{ post.formattedDate.date }}
+                    </div>
                 </div>
             </div>
             <div class="center">
@@ -24,21 +30,15 @@
 
 <script>
 import AuthorName from "../commons/AuthorName.vue";
+import functionsShared from "../../share/functionsShared.js";
 
 export default {
     name: "LatestPost",
     components: {
         AuthorName,
     },
-    data() {
-        return {
-            authorGot: this.author,
-        };
-    },
     props: {
         post: Object,
-        author: Object,
-        authorId: Number,
     },
     computed: {
         shortContent() {
@@ -50,16 +50,9 @@ export default {
         },
     },
     created() {
-        if (this.authorId) {
-            axios
-                .get("/api/authors-id/" + this.authorId)
-                .then((response) => {
-                    this.authorGot = response.data;
-                })
-                .catch((error) => {
-                    this.$router.push({ name: "not-found" });
-                });
-        }
+        this.post.formattedDate = functionsShared.formatDate(
+            this.post.created_at
+        );
     },
 };
 </script>
@@ -92,6 +85,11 @@ a {
             }
             .date {
                 color: var(--nav-color);
+                display: flex;
+                .slash {
+                    color: var(--green);
+                    margin: 0 5px;
+                }
             }
         }
         .center {

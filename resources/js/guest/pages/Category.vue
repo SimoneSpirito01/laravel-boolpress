@@ -6,7 +6,6 @@
                 v-for="post in category.posts"
                 :key="post.id"
                 :post="post"
-                :authorId="post.author_id"
             />
         </div>
     </div>
@@ -25,7 +24,6 @@ export default {
     data() {
         return {
             category: {},
-            author: {},
         };
     },
     created() {

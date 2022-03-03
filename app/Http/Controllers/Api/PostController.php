@@ -18,7 +18,7 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->with(['category', 'tags', 'author', 'comments' => function($query) {
-            $query->where('approved', 1);
+            $query->where('approved', 1)->orderBy('created_at', 'desc');
         }])->first();
 
         if (empty($post)) {

@@ -18,6 +18,9 @@ class TagController extends Controller
     public function show($slug)
     {
         $tag = Tag::where('slug', $slug)->with('posts')->first();
+        foreach ($tag->posts as $post) {
+            $post->author = $post->author;
+        }
 
         if (empty($tag)) {
             return response()->json(['message' => 'page not found'], 404);

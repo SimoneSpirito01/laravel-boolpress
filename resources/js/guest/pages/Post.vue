@@ -8,8 +8,15 @@
                 <div class="info">
                     <div class="left">
                         <AuthorName :author="post.author" />
-                        <span class="slash">/</span>
-                        <div class="date">{{ post.created_at }}</div>
+                        <div class="date">
+                            <div class="hour">
+                                {{ post.formattedDate.hour }}
+                            </div>
+                            <div class="slash">/</div>
+                            <div class="year">
+                                {{ post.formattedDate.date }}
+                            </div>
+                        </div>
                     </div>
                     <div class="right">
                         <svg
@@ -135,6 +142,7 @@
 <script>
 import AuthorName from "../components/commons/AuthorName.vue";
 import LatestPosts from "../components/sections/LatestPosts.vue";
+import functionsShared from "../share/functionsShared.js";
 
 export default {
     name: "Post",
@@ -162,21 +170,11 @@ export default {
                     this.formData.name = "";
                     this.formData.content = "";
                     this.commentSent = true;
-                    console.log(response);
                 })
                 .catch((error) => {
-                    console.log(error.response.data.errors);
                     this.formErrors = error.response.data.errors;
                     this.commentSent = false;
                 });
-        },
-        formatDate(date) {
-            let formattedDate = {};
-            let array = [];
-            array = date.split("T");
-            formattedDate["date"] = array[0];
-            formattedDate["hour"] = array[1].slice(0, 5);
-            return formattedDate;
         },
     },
     created() {
@@ -186,9 +184,12 @@ export default {
                 let self = this;
                 self.post = response.data;
                 self.formData.post_id = self.post.id;
+                self.post.formattedDate = functionsShared.formatDate(
+                    self.post.created_at
+                );
                 if (self.post.comments.length > 0) {
                     self.post.comments.forEach((comment) => {
-                        comment.formattedDate = self.formatDate(
+                        comment.formattedDate = functionsShared.formatDate(
                             comment.created_at
                         );
                     });
@@ -238,6 +239,13 @@ export default {
                         font-size: 15px;
                         font-weight: 300;
                         color: var(--nav-color);
+                        display: flex;
+                        margin-left: 20px;
+                        .slash {
+                            color: var(--green);
+                            margin: 0 5px;
+                            font-weight: 500;
+                        }
                     }
                 }
                 .right {

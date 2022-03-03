@@ -18,6 +18,9 @@ class CategoryController extends Controller
     public function show($slug)
     {
         $category = Category::where('slug', $slug)->with(['posts'])->first();
+        foreach ($category->posts as $post) {
+            $post->author = $post->author;
+        }
 
         if (empty($category)) {
             return response()->json(['message' => 'page not found'], 404);

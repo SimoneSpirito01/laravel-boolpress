@@ -5,7 +5,6 @@
             v-for="post in tag.posts"
             :key="post.id"
             :post="post"
-            :authorId="post.author_id"
         />
     </div>
 </template>
@@ -23,7 +22,6 @@ export default {
     data() {
         return {
             tag: {},
-            author: {}
         };
     },
     created() {
