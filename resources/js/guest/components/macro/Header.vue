@@ -50,6 +50,9 @@ export default {
 <style lang="scss" scoped>
 header {
     width: 14%;
+    position: fixed;
+    top: 0;
+    left: 0;
     ul {
         list-style: none;
         padding: 35px 30px;

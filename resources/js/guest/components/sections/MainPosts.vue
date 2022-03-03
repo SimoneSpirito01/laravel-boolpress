@@ -1,8 +1,11 @@
 <template>
-    <div v-if="posts.length > 0" class="main-posts">
-        <router-link class="left" :to="{ name: 'post', params: { slug: posts[0].slug } }">
+    <div class="main-posts">
+        <router-link
+            class="left"
+            :to="{ name: 'post', params: { slug: posts[0].slug } }"
+        >
             <h1 class="title">{{ posts[0].title }}</h1>
-            <AuthorName :author="posts[0].author"/>
+            <AuthorName :author="posts[0].author" />
             <div class="image">
                 <img
                     :src="`/storage/${posts[0].image}`"
@@ -19,27 +22,21 @@
 <script>
 import MainPost from "../commons/MainPost.vue";
 import AuthorName from "../commons/AuthorName.vue";
+import dataShared from '../../share/dataShared';
 
 export default {
     name: "MainPosts",
     components: {
         MainPost,
-        AuthorName
+        AuthorName,
+    },
+    props: {
+        posts: Array
     },
     data() {
         return {
-            posts: [],
+            dataShared,
         };
-    },
-    created() {
-        axios
-            .get("/api/posts-main")
-            .then((response) => {
-                this.posts = [...response.data];
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
     },
 };
 </script>
@@ -59,8 +56,10 @@ export default {
             margin-bottom: 15px;
         }
         .image {
+            width: 100%;
             img {
                 width: 100%;
+                display: block;
             }
         }
     }

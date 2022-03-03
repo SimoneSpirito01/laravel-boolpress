@@ -62,18 +62,29 @@ a {
     display: inline-block;
     text-decoration: none;
     color: initial;
+    padding: 0 10px;
+    background-color: white;
+    transition: 0.3s;
     &:hover {
-        animation: shadow-pop-br 0.3s both;
-        padding: 0 20px;
+        background-color: #f1f1f1;
+        -webkit-box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e,
+            4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e,
+            8px 8px #3e3e3e;
+        box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e,
+            4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e,
+            8px 8px #3e3e3e;
+        -webkit-transform: translateX(-8px) translateY(-8px);
+        transform: translateX(-8px) translateY(-8px);
     }
     &:hover + a .latest-post,
     &:hover .latest-post {
-        border: none;
+        border-top: 2px solid transparent;
     }
     .latest-post {
         display: flex;
         padding: 30px 0;
         border-top: 2px solid #f1f1f1;
+        transition: 0.3s;
         > * {
             width: calc((100% - 60px) / 3);
         }

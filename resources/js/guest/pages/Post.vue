@@ -1,6 +1,6 @@
 <template>
-    <div class="single-post-page">
-        <div v-if="post.title" class="post">
+    <div v-if="post.title" class="single-post-page">
+        <div class="post">
             <div class="top">
                 <div class="title">
                     <h1>{{ post.title }}</h1>
@@ -29,12 +29,16 @@
                                 d="M15.3,14.1h2.4v2.4h-2.4V14.1z M12.5,11.8H0v2.4h15.3v-2.4H12.5z M7.1,2.4h10.6V0H2.4v2.4H7.1z M17.6,18.8H20V0h-2.4V18.8zM2.4,5.9V0H0v11.8h2.4V5.9z"
                             ></path>
                         </svg>
-                        <a href="#comments" class="comment-link">Comment</a>
+                        <a
+                            @click.prevent="scrollTo('commentSection', 60)"
+                            href="#"
+                            class="comment-link"
+                            >Comment</a
+                        >
                     </div>
                 </div>
                 <div class="tags">
                     <div class="tags-container">
-                        <h4>Tags</h4>
                         <router-link
                             :to="{
                                 name: 'tag',
@@ -53,7 +57,7 @@
                     <img :src="`/storage/${post.image}`" :alt="post.name" />
                 </div>
                 <div v-html="post.content" class="post-content"></div>
-                <div id="comments">
+                <div id="comments" ref="commentSection">
                     <div class="left">
                         <h4>Comments</h4>
                         <p
@@ -135,7 +139,7 @@
                 </div>
             </div>
         </div>
-        <LatestPosts />
+        <LatestPosts :posts="postsLatest"/>
     </div>
 </template>
 
@@ -153,6 +157,7 @@ export default {
     data() {
         return {
             post: {},
+            postsLatest: [],
             formData: {
                 name: "",
                 content: "",
@@ -176,6 +181,11 @@ export default {
                     this.commentSent = false;
                 });
         },
+        scrollTo(where, distance) {
+            let element = this.$refs[where];
+            let top = element.offsetTop;
+            scrollTo(0, top - distance);
+        },
     },
     created() {
         axios
@@ -194,6 +204,14 @@ export default {
                         );
                     });
                 }
+                axios
+                    .get("/api/posts-latest")
+                    .then((response) => {
+                        this.postsLatest = [...response.data];
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             })
             .catch((error) => {
                 this.$router.push({ name: "not-found" });
@@ -228,7 +246,7 @@ export default {
             .info {
                 display: flex;
                 justify-content: space-between;
-                margin-bottom: 22px;
+                margin-bottom: 10px;
                 .left {
                     display: flex;
                     span {

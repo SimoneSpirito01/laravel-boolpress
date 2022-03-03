@@ -7806,46 +7806,30 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _commons_LatestPost_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../commons/LatestPost.vue */ "./resources/js/guest/components/commons/LatestPost.vue");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+/* harmony import */ var _share_dataShared_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../share/dataShared.js */ "./resources/js/guest/share/dataShared.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "LatestPosts",
   components: {
     LatestPost: _commons_LatestPost_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: {
+    posts: Array
+  },
   data: function data() {
     return {
-      posts: []
+      dataShared: _share_dataShared_js__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
-  },
-  created: function created() {
-    var _this = this;
-
-    axios.get("/api/posts-latest").then(function (response) {
-      _this.posts = _toConsumableArray(response.data);
-    })["catch"](function (error) {
-      console.log(error);
-    });
   }
 });
 
@@ -7862,36 +7846,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _commons_MainPost_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../commons/MainPost.vue */ "./resources/js/guest/components/commons/MainPost.vue");
 /* harmony import */ var _commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../commons/AuthorName.vue */ "./resources/js/guest/components/commons/AuthorName.vue");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+/* harmony import */ var _share_dataShared__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../share/dataShared */ "./resources/js/guest/share/dataShared.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7900,19 +7877,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     MainPost: _commons_MainPost_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     AuthorName: _commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  props: {
+    posts: Array
+  },
   data: function data() {
     return {
-      posts: []
+      dataShared: _share_dataShared__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
-  },
-  created: function created() {
-    var _this = this;
-
-    axios.get("/api/posts-main").then(function (response) {
-      _this.posts = _toConsumableArray(response.data);
-    })["catch"](function (error) {
-      console.log(error);
-    });
   }
 });
 
@@ -8070,6 +8041,19 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_sections_MainPosts_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/sections/MainPosts.vue */ "./resources/js/guest/components/sections/MainPosts.vue");
 /* harmony import */ var _components_sections_LatestPosts_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/sections/LatestPosts.vue */ "./resources/js/guest/components/sections/LatestPosts.vue");
+/* harmony import */ var _share_dataShared_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../share/dataShared.js */ "./resources/js/guest/share/dataShared.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -8077,6 +8061,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8084,6 +8069,40 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     MainPosts: _components_sections_MainPosts_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     LatestPosts: _components_sections_LatestPosts_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      dataShared: _share_dataShared_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+      homeLoaded: false,
+      postsMain: [],
+      postsLatest: []
+    };
+  },
+  methods: {
+    checkIfLoaded: function checkIfLoaded() {
+      if (this.$refs.mainPosts.innerHTML != "" && this.$refs.latestPosts.innerHTML != "") {
+        console.log("loaded");
+        return true;
+      } else {
+        console.log("not");
+        return false;
+      }
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("/api/posts-main").then(function (response) {
+      _this.postsMain = _toConsumableArray(response.data);
+      axios.get("/api/posts-latest").then(function (response) {
+        _this.postsLatest = _toConsumableArray(response.data);
+        _this.homeLoaded = true;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -8122,6 +8141,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/commons/AuthorName.vue */ "./resources/js/guest/components/commons/AuthorName.vue");
 /* harmony import */ var _components_sections_LatestPosts_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/sections/LatestPosts.vue */ "./resources/js/guest/components/sections/LatestPosts.vue");
 /* harmony import */ var _share_functionsShared_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../share/functionsShared.js */ "./resources/js/guest/share/functionsShared.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
 //
 //
 //
@@ -8275,6 +8310,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       post: {},
+      postsLatest: [],
       formData: {
         name: "",
         content: "",
@@ -8296,7 +8332,22 @@ __webpack_require__.r(__webpack_exports__);
         _this.formErrors = error.response.data.errors;
         _this.commentSent = false;
       });
-    }
+    },
+    scrollTo: function (_scrollTo) {
+      function scrollTo(_x, _x2) {
+        return _scrollTo.apply(this, arguments);
+      }
+
+      scrollTo.toString = function () {
+        return _scrollTo.toString();
+      };
+
+      return scrollTo;
+    }(function (where, distance) {
+      var element = this.$refs[where];
+      var top = element.offsetTop;
+      scrollTo(0, top - distance);
+    })
   },
   created: function created() {
     var _this2 = this;
@@ -8312,6 +8363,12 @@ __webpack_require__.r(__webpack_exports__);
           comment.formattedDate = _share_functionsShared_js__WEBPACK_IMPORTED_MODULE_2__["default"].formatDate(comment.created_at);
         });
       }
+
+      axios.get("/api/posts-latest").then(function (response) {
+        _this2.postsLatest = _toConsumableArray(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     })["catch"](function (error) {
       _this2.$router.push({
         name: "not-found"
@@ -8430,7 +8487,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container[data-v-46225888] {\n  display: flex;\n  height: 100vh;\n  overflow-y: hidden;\n}", ""]);
+exports.push([module.i, ".container[data-v-46225888] {\n  display: flex;\n  overflow-y: hidden;\n}", ""]);
 
 // exports
 
@@ -8487,7 +8544,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "a[data-v-6cdcde02] {\n  display: inline-block;\n  text-decoration: none;\n  color: initial;\n}\na[data-v-6cdcde02]:hover {\n  -webkit-animation: shadow-pop-br 0.3s both;\n          animation: shadow-pop-br 0.3s both;\n  padding: 0 20px;\n}\na:hover + a .latest-post[data-v-6cdcde02], a:hover .latest-post[data-v-6cdcde02] {\n  border: none;\n}\na .latest-post[data-v-6cdcde02] {\n  display: flex;\n  padding: 30px 0;\n  border-top: 2px solid #f1f1f1;\n}\na .latest-post > *[data-v-6cdcde02] {\n  width: calc((100% - 60px) / 3);\n}\na .latest-post .left[data-v-6cdcde02] {\n  font-size: 16px;\n}\na .latest-post .left .title[data-v-6cdcde02] {\n  font-size: 35px;\n  margin-bottom: 10px;\n}\na .latest-post .left .date[data-v-6cdcde02] {\n  color: var(--nav-color);\n  display: flex;\n}\na .latest-post .left .date .slash[data-v-6cdcde02] {\n  color: var(--green);\n  margin: 0 5px;\n}\na .latest-post .center[data-v-6cdcde02] {\n  margin: 0 30px;\n}\na .latest-post .center .content[data-v-6cdcde02] {\n  max-height: 300px;\n  color: var(--nav-color) !important;\n}\na .latest-post .center .content[data-v-6cdcde02] p {\n  font-size: 20px;\n}\na .latest-post .center .content[data-v-6cdcde02] a {\n  color: var(--nav-color);\n  text-decoration: none;\n  pointer-events: none;\n}\na .latest-post .right .image img[data-v-6cdcde02] {\n  width: 100%;\n}\n.latest-posts:hover .latest-post[data-v-6cdcde02]:not(:hover) {\n  opacity: 0.8;\n}", ""]);
+exports.push([module.i, "a[data-v-6cdcde02] {\n  display: inline-block;\n  text-decoration: none;\n  color: initial;\n  padding: 0 10px;\n  background-color: white;\n  transition: 0.3s;\n}\na[data-v-6cdcde02]:hover {\n  background-color: #f1f1f1;\n  box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e, 4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e, 8px 8px #3e3e3e;\n  transform: translateX(-8px) translateY(-8px);\n}\na:hover + a .latest-post[data-v-6cdcde02], a:hover .latest-post[data-v-6cdcde02] {\n  border-top: 2px solid transparent;\n}\na .latest-post[data-v-6cdcde02] {\n  display: flex;\n  padding: 30px 0;\n  border-top: 2px solid #f1f1f1;\n  transition: 0.3s;\n}\na .latest-post > *[data-v-6cdcde02] {\n  width: calc((100% - 60px) / 3);\n}\na .latest-post .left[data-v-6cdcde02] {\n  font-size: 16px;\n}\na .latest-post .left .title[data-v-6cdcde02] {\n  font-size: 35px;\n  margin-bottom: 10px;\n}\na .latest-post .left .date[data-v-6cdcde02] {\n  color: var(--nav-color);\n  display: flex;\n}\na .latest-post .left .date .slash[data-v-6cdcde02] {\n  color: var(--green);\n  margin: 0 5px;\n}\na .latest-post .center[data-v-6cdcde02] {\n  margin: 0 30px;\n}\na .latest-post .center .content[data-v-6cdcde02] {\n  max-height: 300px;\n  color: var(--nav-color) !important;\n}\na .latest-post .center .content[data-v-6cdcde02] p {\n  font-size: 20px;\n}\na .latest-post .center .content[data-v-6cdcde02] a {\n  color: var(--nav-color);\n  text-decoration: none;\n  pointer-events: none;\n}\na .latest-post .right .image img[data-v-6cdcde02] {\n  width: 100%;\n}\n.latest-posts:hover .latest-post[data-v-6cdcde02]:not(:hover) {\n  opacity: 0.8;\n}", ""]);
 
 // exports
 
@@ -8525,7 +8582,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "a[data-v-06d82ef4] {\n  text-decoration: none;\n  color: initial;\n  display: inline-block;\n}\na[data-v-06d82ef4]:hover {\n  -webkit-animation: shadow-pop-br 0.2s both;\n          animation: shadow-pop-br 0.2s both;\n  padding: 10px 20px;\n}\na:hover .main-post[data-v-06d82ef4] {\n  border: none;\n}\na .main-post[data-v-06d82ef4] {\n  margin-bottom: 15px;\n  border-bottom: 1px solid #dddddd;\n  transition: opacity 0.15s linear;\n}\na .main-post .title[data-v-06d82ef4] {\n  font-size: 29.5px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\na .main-post .author[data-v-06d82ef4] {\n  color: var(--author-name);\n  font-size: 16px;\n  font-weight: 600;\n  margin-bottom: 8px;\n}\n.right:hover .main-post[data-v-06d82ef4]:not(:hover) {\n  opacity: 0.8;\n}", ""]);
+exports.push([module.i, "a[data-v-06d82ef4] {\n  text-decoration: none;\n  color: initial;\n  display: inline-block;\n  background: white;\n  padding: 0 10px;\n  transition: 0.3s;\n}\na[data-v-06d82ef4]:hover {\n  background-color: #f1f1f1;\n  box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e, 4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e, 8px 8px #3e3e3e;\n  transform: translateX(-8px) translateY(-8px);\n}\na:hover .main-post[data-v-06d82ef4] {\n  border: none;\n}\na:hover + a .main-post[data-v-06d82ef4], a:hover .main-post[data-v-06d82ef4] {\n  border-top: 1px solid transparent;\n}\na:first-child .main-post[data-v-06d82ef4] {\n  border-top: 1px solid transparent;\n}\na .main-post[data-v-06d82ef4] {\n  border-top: 1px solid #dddddd;\n  padding: 12px 0;\n  transition: opacity 0.15s linear;\n}\na .main-post .title[data-v-06d82ef4] {\n  font-size: 29.5px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\na .main-post .author[data-v-06d82ef4] {\n  color: var(--author-name);\n  font-size: 16px;\n  font-weight: 600;\n  margin-bottom: 8px;\n}\n.right:hover .main-post[data-v-06d82ef4]:not(:hover) {\n  opacity: 0.8;\n}", ""]);
 
 // exports
 
@@ -8601,7 +8658,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "header[data-v-5a613238] {\n  width: 14%;\n}\nheader ul[data-v-5a613238] {\n  list-style: none;\n  padding: 35px 30px;\n}\nheader ul li[data-v-5a613238] {\n  margin-bottom: 12px;\n}\nheader ul li a[data-v-5a613238] {\n  font-size: 28px;\n  font-weight: 200;\n  color: var(--nav-color);\n  text-decoration: none;\n}\nheader ul li a[data-v-5a613238]:hover {\n  color: var(--green);\n}", ""]);
+exports.push([module.i, "header[data-v-5a613238] {\n  width: 14%;\n  position: fixed;\n  top: 0;\n  left: 0;\n}\nheader ul[data-v-5a613238] {\n  list-style: none;\n  padding: 35px 30px;\n}\nheader ul li[data-v-5a613238] {\n  margin-bottom: 12px;\n}\nheader ul li a[data-v-5a613238] {\n  font-size: 28px;\n  font-weight: 200;\n  color: var(--nav-color);\n  text-decoration: none;\n}\nheader ul li a[data-v-5a613238]:hover {\n  color: var(--green);\n}", ""]);
 
 // exports
 
@@ -8620,7 +8677,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "main[data-v-88cdd060] {\n  width: 86%;\n  padding-left: 25px;\n  overflow-y: auto;\n}\nmain .container[data-v-88cdd060] {\n  width: 77%;\n}", ""]);
+exports.push([module.i, "main[data-v-88cdd060] {\n  width: 86%;\n  margin-left: 14%;\n  padding-left: 25px;\n  overflow-y: auto;\n}\nmain .container[data-v-88cdd060] {\n  width: 77%;\n}", ""]);
 
 // exports
 
@@ -8639,7 +8696,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "h4[data-v-3b81f5c2] {\n  font-size: 22.5px;\n  padding-bottom: 15px;\n}", ""]);
+exports.push([module.i, "h4[data-v-3b81f5c2] {\n  font-size: 22.5px;\n  padding-bottom: 15px;\n  padding-left: 10px;\n}", ""]);
 
 // exports
 
@@ -8658,7 +8715,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".main-posts[data-v-69bf29ed] {\n  display: flex;\n  margin-bottom: 100px;\n}\n.main-posts .left[data-v-69bf29ed] {\n  width: 65%;\n  padding-right: 45px;\n  text-decoration: none;\n  color: initial;\n}\n.main-posts .left .title[data-v-69bf29ed] {\n  font-size: 45px;\n  font-weight: 700;\n  margin-bottom: 15px;\n}\n.main-posts .left .image img[data-v-69bf29ed] {\n  width: 100%;\n}\n.main-posts .right[data-v-69bf29ed] {\n  width: 35%;\n}", ""]);
+exports.push([module.i, ".main-posts[data-v-69bf29ed] {\n  display: flex;\n  margin-bottom: 100px;\n}\n.main-posts .left[data-v-69bf29ed] {\n  width: 65%;\n  padding-right: 45px;\n  text-decoration: none;\n  color: initial;\n}\n.main-posts .left .title[data-v-69bf29ed] {\n  font-size: 45px;\n  font-weight: 700;\n  margin-bottom: 15px;\n}\n.main-posts .left .image[data-v-69bf29ed] {\n  width: 100%;\n}\n.main-posts .left .image img[data-v-69bf29ed] {\n  width: 100%;\n  display: block;\n}\n.main-posts .right[data-v-69bf29ed] {\n  width: 35%;\n}", ""]);
 
 // exports
 
@@ -8734,7 +8791,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".single-post-page .post[data-v-4017f840] {\n  padding: 35px 25px 35px 65px;\n}\n.single-post-page .post .top .title[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .title h1[data-v-4017f840] {\n  font-size: 45px;\n}\n.single-post-page .post .top .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .info .left[data-v-4017f840] {\n  display: flex;\n}\n.single-post-page .post .top .info .left span[data-v-4017f840] {\n  margin: 0 15px;\n  color: var(--green);\n}\n.single-post-page .post .top .info .left .date[data-v-4017f840] {\n  font-size: 15px;\n  font-weight: 300;\n  color: var(--nav-color);\n  display: flex;\n  margin-left: 20px;\n}\n.single-post-page .post .top .info .left .date .slash[data-v-4017f840] {\n  color: var(--green);\n  margin: 0 5px;\n  font-weight: 500;\n}\n.single-post-page .post .top .info .right[data-v-4017f840] {\n  display: flex;\n  align-items: center;\n}\n.single-post-page .post .top .info .right a[data-v-4017f840] {\n  display: block;\n  font-size: 14px;\n  font-family: \"Nimbus Sans\", sans-serif;\n  color: var(--nav-color);\n  text-decoration: none;\n  margin-left: 8px;\n}\n.single-post-page .post .top .info .right .icon-comment[data-v-4017f840] {\n  width: 20px;\n}\n.single-post-page .post .top .info .right .icon-comment path[data-v-4017f840] {\n  fill: var(--green);\n}\n.single-post-page .post .top .tags[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .tags h4[data-v-4017f840] {\n  font-size: 18px;\n  margin-right: 17px;\n}\n.single-post-page .post .top .tags .tags-container[data-v-4017f840] {\n  margin-top: 12px 0;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840] {\n  margin-right: 12px;\n  color: var(--green);\n  background: var(--nav-color);\n  border-radius: 20px;\n  padding: 2px 6px;\n  font-size: 14px;\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]::before {\n  content: \"#\";\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page .post .bottom img[data-v-4017f840] {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content {\n  font-size: 20px;\n  color: var(--author-name);\n  letter-spacing: -0.1px;\n  overflow-wrap: break-word;\n  line-height: 1.5;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content img {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p {\n  margin-bottom: 20px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p a {\n  color: var(--green);\n  border-bottom: 1px solid #f1f1f1;\n  text-decoration: none;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content h3 {\n  color: black;\n  font-family: \"Aktiv\", sans-serif;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom #comments[data-v-4017f840] {\n  margin-top: 60px;\n  margin-bottom: 120px;\n  display: flex;\n}\n.single-post-page .post .bottom #comments .left[data-v-4017f840] {\n  width: 60%;\n}\n.single-post-page .post .bottom #comments .left h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 20px;\n}\n.single-post-page .post .bottom #comments .left .comments-empty[data-v-4017f840] {\n  font-size: 20px;\n  color: var(--author-name);\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .left .comment[data-v-4017f840] {\n  margin-bottom: 20px;\n  cursor: pointer;\n}\n.single-post-page .post .bottom #comments .left .comment:hover .info .name[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .left .comment .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n}\n.single-post-page .post .bottom #comments .left .comment .info .name[data-v-4017f840] {\n  color: var(--nav-color);\n  margin-bottom: 5px;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date[data-v-4017f840] {\n  font-size: 13px;\n  font-weight: 300;\n  color: var(--nav-color);\n}\n.single-post-page .post .bottom #comments .left .comment .info .date > *[data-v-4017f840] {\n  display: inline-block;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .hour[data-v-4017f840] {\n  text-align: right;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .slash[data-v-4017f840] {\n  color: var(--green);\n  margin: 0 2px;\n}\n.single-post-page .post .bottom #comments .left .comment .content[data-v-4017f840] {\n  color: var(--author-name);\n}\n.single-post-page .post .bottom #comments .right[data-v-4017f840] {\n  width: 40%;\n  padding-left: 50px;\n}\n.single-post-page .post .bottom #comments .right h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container[data-v-4017f840] {\n  position: relative;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container .my_caret[data-v-4017f840] {\n  font-size: 18px;\n  position: absolute;\n  top: 15px;\n  left: -10px;\n  color: black;\n  opacity: 0;\n  transition: 0.3s;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840] {\n  width: 100%;\n  font-size: 16px;\n  color: var(--nav-color);\n  border: none;\n  border-bottom: 1px solid var(--nav-color);\n  padding: 6px 0;\n  margin-top: 10px;\n  margin-bottom: 15px;\n  resize: none;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840]:focus,\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840]:focus {\n  outline: none;\n  border-color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .comment-container input:focus + .my_caret[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea:focus + .my_caret[data-v-4017f840] {\n  opacity: 1;\n  color: var(--green);\n  left: 0;\n}\n.single-post-page .post .bottom #comments .right form .button[data-v-4017f840] {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .button .comment-sent[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .button.button-end[data-v-4017f840] {\n  justify-content: space-between;\n  align-items: center;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840] {\n  font-size: 14px;\n  border: none;\n  background-color: var(--nav-color);\n  border-radius: 40px;\n  padding: 10px 20px;\n  color: white;\n  cursor: pointer;\n  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page[data-v-4017f840] .latest {\n  padding-left: 65px;\n}", ""]);
+exports.push([module.i, ".single-post-page .post[data-v-4017f840] {\n  padding: 35px 25px 35px 65px;\n}\n.single-post-page .post .top .title[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .title h1[data-v-4017f840] {\n  font-size: 45px;\n}\n.single-post-page .post .top .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 10px;\n}\n.single-post-page .post .top .info .left[data-v-4017f840] {\n  display: flex;\n}\n.single-post-page .post .top .info .left span[data-v-4017f840] {\n  margin: 0 15px;\n  color: var(--green);\n}\n.single-post-page .post .top .info .left .date[data-v-4017f840] {\n  font-size: 15px;\n  font-weight: 300;\n  color: var(--nav-color);\n  display: flex;\n  margin-left: 20px;\n}\n.single-post-page .post .top .info .left .date .slash[data-v-4017f840] {\n  color: var(--green);\n  margin: 0 5px;\n  font-weight: 500;\n}\n.single-post-page .post .top .info .right[data-v-4017f840] {\n  display: flex;\n  align-items: center;\n}\n.single-post-page .post .top .info .right a[data-v-4017f840] {\n  display: block;\n  font-size: 14px;\n  font-family: \"Nimbus Sans\", sans-serif;\n  color: var(--nav-color);\n  text-decoration: none;\n  margin-left: 8px;\n}\n.single-post-page .post .top .info .right .icon-comment[data-v-4017f840] {\n  width: 20px;\n}\n.single-post-page .post .top .info .right .icon-comment path[data-v-4017f840] {\n  fill: var(--green);\n}\n.single-post-page .post .top .tags[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .tags h4[data-v-4017f840] {\n  font-size: 18px;\n  margin-right: 17px;\n}\n.single-post-page .post .top .tags .tags-container[data-v-4017f840] {\n  margin-top: 12px 0;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840] {\n  margin-right: 12px;\n  color: var(--green);\n  background: var(--nav-color);\n  border-radius: 20px;\n  padding: 2px 6px;\n  font-size: 14px;\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]::before {\n  content: \"#\";\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page .post .bottom img[data-v-4017f840] {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content {\n  font-size: 20px;\n  color: var(--author-name);\n  letter-spacing: -0.1px;\n  overflow-wrap: break-word;\n  line-height: 1.5;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content img {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p {\n  margin-bottom: 20px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p a {\n  color: var(--green);\n  border-bottom: 1px solid #f1f1f1;\n  text-decoration: none;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content h3 {\n  color: black;\n  font-family: \"Aktiv\", sans-serif;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom #comments[data-v-4017f840] {\n  margin-top: 60px;\n  margin-bottom: 120px;\n  display: flex;\n}\n.single-post-page .post .bottom #comments .left[data-v-4017f840] {\n  width: 60%;\n}\n.single-post-page .post .bottom #comments .left h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 20px;\n}\n.single-post-page .post .bottom #comments .left .comments-empty[data-v-4017f840] {\n  font-size: 20px;\n  color: var(--author-name);\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .left .comment[data-v-4017f840] {\n  margin-bottom: 20px;\n  cursor: pointer;\n}\n.single-post-page .post .bottom #comments .left .comment:hover .info .name[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .left .comment .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n}\n.single-post-page .post .bottom #comments .left .comment .info .name[data-v-4017f840] {\n  color: var(--nav-color);\n  margin-bottom: 5px;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date[data-v-4017f840] {\n  font-size: 13px;\n  font-weight: 300;\n  color: var(--nav-color);\n}\n.single-post-page .post .bottom #comments .left .comment .info .date > *[data-v-4017f840] {\n  display: inline-block;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .hour[data-v-4017f840] {\n  text-align: right;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .slash[data-v-4017f840] {\n  color: var(--green);\n  margin: 0 2px;\n}\n.single-post-page .post .bottom #comments .left .comment .content[data-v-4017f840] {\n  color: var(--author-name);\n}\n.single-post-page .post .bottom #comments .right[data-v-4017f840] {\n  width: 40%;\n  padding-left: 50px;\n}\n.single-post-page .post .bottom #comments .right h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container[data-v-4017f840] {\n  position: relative;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container .my_caret[data-v-4017f840] {\n  font-size: 18px;\n  position: absolute;\n  top: 15px;\n  left: -10px;\n  color: black;\n  opacity: 0;\n  transition: 0.3s;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840] {\n  width: 100%;\n  font-size: 16px;\n  color: var(--nav-color);\n  border: none;\n  border-bottom: 1px solid var(--nav-color);\n  padding: 6px 0;\n  margin-top: 10px;\n  margin-bottom: 15px;\n  resize: none;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840]:focus,\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840]:focus {\n  outline: none;\n  border-color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .comment-container input:focus + .my_caret[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea:focus + .my_caret[data-v-4017f840] {\n  opacity: 1;\n  color: var(--green);\n  left: 0;\n}\n.single-post-page .post .bottom #comments .right form .button[data-v-4017f840] {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .button .comment-sent[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .button.button-end[data-v-4017f840] {\n  justify-content: space-between;\n  align-items: center;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840] {\n  font-size: 14px;\n  border: none;\n  background-color: var(--nav-color);\n  border-radius: 40px;\n  padding: 10px 20px;\n  color: white;\n  cursor: pointer;\n  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page[data-v-4017f840] .latest {\n  padding-left: 65px;\n}", ""]);
 
 // exports
 
@@ -10931,20 +10988,18 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.posts.length > 0
-    ? _c("div", { staticClass: "latest" }, [
-        _c("h4", [_vm._v("The Latest")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "latest-posts" },
-          _vm._l(_vm.posts, function (post) {
-            return _c("LatestPost", { key: post.id, attrs: { post: post } })
-          }),
-          1
-        ),
-      ])
-    : _vm._e()
+  return _c("div", { staticClass: "latest" }, [
+    _c("h4", [_vm._v("The Latest")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "latest-posts" },
+      _vm._l(_vm.posts, function (post) {
+        return _c("LatestPost", { key: post.id, attrs: { post: post } })
+      }),
+      1
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -10968,50 +11023,46 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.posts.length > 0
-    ? _c(
-        "div",
-        { staticClass: "main-posts" },
+  return _c(
+    "div",
+    { staticClass: "main-posts" },
+    [
+      _c(
+        "router-link",
+        {
+          staticClass: "left",
+          attrs: { to: { name: "post", params: { slug: _vm.posts[0].slug } } },
+        },
         [
-          _c(
-            "router-link",
-            {
-              staticClass: "left",
-              attrs: {
-                to: { name: "post", params: { slug: _vm.posts[0].slug } },
-              },
-            },
-            [
-              _c("h1", { staticClass: "title" }, [
-                _vm._v(_vm._s(_vm.posts[0].title)),
-              ]),
-              _vm._v(" "),
-              _c("AuthorName", { attrs: { author: _vm.posts[0].author } }),
-              _vm._v(" "),
-              _c("div", { staticClass: "image" }, [
-                _c("img", {
-                  attrs: {
-                    src: "/storage/" + _vm.posts[0].image,
-                    alt: _vm.posts[0].title,
-                  },
-                }),
-              ]),
-            ],
-            1
-          ),
+          _c("h1", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.posts[0].title)),
+          ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "right" },
-            _vm._l(4, function (i) {
-              return _c("MainPost", { key: i, attrs: { post: _vm.posts[i] } })
+          _c("AuthorName", { attrs: { author: _vm.posts[0].author } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "image" }, [
+            _c("img", {
+              attrs: {
+                src: "/storage/" + _vm.posts[0].image,
+                alt: _vm.posts[0].title,
+              },
             }),
-            1
-          ),
+          ]),
         ],
         1
-      )
-    : _vm._e()
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "right" },
+        _vm._l(4, function (i) {
+          return _c("MainPost", { key: i, attrs: { post: _vm.posts[i] } })
+        }),
+        1
+      ),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11163,12 +11214,24 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "home" },
-    [_c("MainPosts"), _vm._v(" "), _c("LatestPosts")],
-    1
-  )
+  return _vm.homeLoaded
+    ? _c(
+        "div",
+        { staticClass: "home" },
+        [
+          _c("MainPosts", {
+            ref: "mainPosts",
+            attrs: { posts: _vm.postsMain },
+          }),
+          _vm._v(" "),
+          _c("LatestPosts", {
+            ref: "latestPosts",
+            attrs: { posts: _vm.postsLatest },
+          }),
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11225,12 +11288,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "single-post-page" },
-    [
-      _vm.post.title
-        ? _c("div", { staticClass: "post" }, [
+  return _vm.post.title
+    ? _c(
+        "div",
+        { staticClass: "single-post-page" },
+        [
+          _c("div", { staticClass: "post" }, [
             _c("div", { staticClass: "top" }, [
               _c("div", { staticClass: "title" }, [
                 _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
@@ -11290,7 +11353,13 @@ var render = function () {
                     "a",
                     {
                       staticClass: "comment-link",
-                      attrs: { href: "#comments" },
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.scrollTo("commentSection", 60)
+                        },
+                      },
                     },
                     [_vm._v("Comment")]
                   ),
@@ -11301,27 +11370,23 @@ var render = function () {
                 _c(
                   "div",
                   { staticClass: "tags-container" },
-                  [
-                    _c("h4", [_vm._v("Tags")]),
-                    _vm._v(" "),
-                    _vm._l(_vm.post.tags, function (tag) {
-                      return _c(
-                        "router-link",
-                        {
-                          key: tag.id,
-                          staticClass: "tag",
-                          attrs: {
-                            to: {
-                              name: "tag",
-                              params: { slug: tag.slug },
-                            },
+                  _vm._l(_vm.post.tags, function (tag) {
+                    return _c(
+                      "router-link",
+                      {
+                        key: tag.id,
+                        staticClass: "tag",
+                        attrs: {
+                          to: {
+                            name: "tag",
+                            params: { slug: tag.slug },
                           },
                         },
-                        [_vm._v(_vm._s(tag.name))]
-                      )
-                    }),
-                  ],
-                  2
+                      },
+                      [_vm._v(_vm._s(tag.name))]
+                    )
+                  }),
+                  1
                 ),
               ]),
             ]),
@@ -11341,7 +11406,7 @@ var render = function () {
                 domProps: { innerHTML: _vm._s(_vm.post.content) },
               }),
               _vm._v(" "),
-              _c("div", { attrs: { id: "comments" } }, [
+              _c("div", { ref: "commentSection", attrs: { id: "comments" } }, [
                 _c(
                   "div",
                   { staticClass: "left" },
@@ -11552,13 +11617,13 @@ var render = function () {
                 ]),
               ]),
             ]),
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("LatestPosts"),
-    ],
-    1
-  )
+          ]),
+          _vm._v(" "),
+          _c("LatestPosts", { attrs: { posts: _vm.postsLatest } }),
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -28932,6 +28997,25 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
+
+/***/ }),
+
+/***/ "./resources/js/guest/share/dataShared.js":
+/*!************************************************!*\
+  !*** ./resources/js/guest/share/dataShared.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0___default.a.observable({
+  latestPostsLoaded: false,
+  mainPostsLoaded: false
+}));
 
 /***/ }),
 

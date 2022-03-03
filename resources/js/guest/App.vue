@@ -19,11 +19,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .container {
     display: flex;
-    height: 100vh;
+    // height: 100vh;
     overflow-y: hidden;
 }
-
 </style>

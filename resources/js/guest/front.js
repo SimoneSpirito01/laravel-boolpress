@@ -1,5 +1,5 @@
-import '@fortawesome/fontawesome-free/css/all.css'
-import '@fortawesome/fontawesome-free/js/all.js'
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -18,6 +18,7 @@ window.Vue = require("vue");
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 
 import App from "./App.vue";
 import router from "./router";
