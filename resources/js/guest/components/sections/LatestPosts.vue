@@ -1,5 +1,5 @@
 <template>
-    <div v-if="posts.length > 0">
+    <div v-if="posts.length > 0" class="latest">
         <h4>The Latest</h4>
         <div class="latest-posts">
             <LatestPost v-for="post in posts" :key="post.id" :post="post" />

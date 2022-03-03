@@ -8131,6 +8131,42 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/commons/AuthorName.vue */ "./resources/js/guest/components/commons/AuthorName.vue");
+/* harmony import */ var _components_sections_LatestPosts_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/sections/LatestPosts.vue */ "./resources/js/guest/components/sections/LatestPosts.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8231,10 +8267,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
   components: {
-    AuthorName: _components_commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AuthorName: _components_commons_AuthorName_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    LatestPosts: _components_sections_LatestPosts_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -8260,20 +8298,49 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error.response.data.errors);
         _this.formErrors = error.response.data.errors;
+        _this.commentSent = false;
       });
+    },
+    formatDate: function formatDate(date) {
+      var formattedDate = {};
+      var array = [];
+      array = date.split("T");
+      formattedDate["date"] = array[0];
+      formattedDate["hour"] = array[1].slice(0, 5);
+      return formattedDate;
     }
   },
   created: function created() {
     var _this2 = this;
 
     axios.get("/api/posts/" + this.$route.params.slug).then(function (response) {
-      _this2.post = response.data;
-      _this2.formData.post_id = _this2.post.id;
+      var self = _this2;
+      self.post = response.data;
+      self.formData.post_id = self.post.id;
+
+      if (self.post.comments.length > 0) {
+        self.post.comments.forEach(function (comment) {
+          comment.formattedDate = self.formatDate(comment.created_at);
+        });
+      }
     })["catch"](function (error) {
       _this2.$router.push({
         name: "not-found"
       });
     });
+  },
+  computed: {
+    checkValidation: function checkValidation() {
+      var errors = this.formErrors.content;
+
+      if (errors) {
+        if (errors.includes("The content field is required.")) {
+          return "The comment cannot be empty";
+        } else {
+          return "";
+        }
+      }
+    }
   }
 });
 
@@ -8680,7 +8747,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".post[data-v-4017f840] {\n  padding: 35px 25px 35px 65px;\n}\n.post .top .title[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.post .top .title h1[data-v-4017f840] {\n  font-size: 45px;\n}\n.post .top .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 22px;\n}\n.post .top .info .left[data-v-4017f840] {\n  display: flex;\n}\n.post .top .info .left span[data-v-4017f840] {\n  margin: 0 15px;\n  color: var(--green);\n}\n.post .top .info .left .date[data-v-4017f840] {\n  font-size: 15px;\n  font-weight: 300;\n  color: var(--nav-color);\n}\n.post .top .info .right[data-v-4017f840] {\n  display: flex;\n  align-items: center;\n}\n.post .top .info .right a[data-v-4017f840] {\n  display: block;\n  font-size: 14px;\n  font-family: \"Nimbus Sans\", sans-serif;\n  color: var(--nav-color);\n  text-decoration: none;\n  margin-left: 8px;\n}\n.post .top .info .right .icon-comment[data-v-4017f840] {\n  width: 20px;\n}\n.post .top .info .right .icon-comment path[data-v-4017f840] {\n  fill: var(--green);\n}\n.post .top .tags[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.post .top .tags h4[data-v-4017f840] {\n  font-size: 18px;\n  margin-right: 17px;\n}\n.post .top .tags .tags-container[data-v-4017f840] {\n  margin-top: 12px;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n}\n.post .top .tags .tags-container .tag[data-v-4017f840] {\n  margin-right: 17px;\n  color: var(--green);\n  background: var(--nav-color);\n  border-radius: 20px;\n  padding: 2px 6px;\n  font-size: 14px;\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.post .top .tags .tags-container .tag[data-v-4017f840]::before {\n  content: \"#\";\n}\n.post .bottom img[data-v-4017f840] {\n  width: 100%;\n  margin: 15px 0;\n}\n.post .bottom[data-v-4017f840] .post-content {\n  font-size: 20px;\n  color: var(--author-name);\n  letter-spacing: -0.1px;\n  overflow-wrap: break-word;\n  line-height: 1.5;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.post .bottom[data-v-4017f840] .post-content img {\n  width: 100%;\n  margin: 15px 0;\n}\n.post .bottom[data-v-4017f840] .post-content p {\n  margin-bottom: 20px;\n}\n.post .bottom[data-v-4017f840] .post-content p a {\n  color: var(--green);\n  border-bottom: 1px solid #f1f1f1;\n  text-decoration: none;\n}\n.post .bottom[data-v-4017f840] .post-content h3 {\n  color: black;\n  font-family: \"Aktiv\", sans-serif;\n}\n.post .bottom #comments[data-v-4017f840] {\n  margin-top: 60px;\n  display: flex;\n}\n.post .bottom #comments .left[data-v-4017f840] {\n  width: 60%;\n}\n.post .bottom #comments .right[data-v-4017f840] {\n  width: 40%;\n}\n.post .bottom #comments .right h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 10px;\n  padding-left: 20px;\n}\n.post .bottom #comments .right form .comment-container[data-v-4017f840] {\n  position: relative;\n  padding-left: 20px;\n}\n.post .bottom #comments .right form .comment-container .my_caret[data-v-4017f840] {\n  font-size: 18px;\n  position: absolute;\n  top: 15px;\n  left: -10px;\n  color: black;\n  opacity: 0;\n  transition: 0.3s;\n}\n.post .bottom #comments .right form .comment-container input[data-v-4017f840],\n.post .bottom #comments .right form .comment-container textarea[data-v-4017f840] {\n  width: 100%;\n  font-size: 16px;\n  color: var(--nav-color);\n  border: none;\n  border-bottom: 1px solid var(--nav-color);\n  padding: 6px 0;\n  margin-top: 10px;\n  margin-bottom: 15px;\n  resize: none;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.post .bottom #comments .right form .comment-container input[data-v-4017f840]:focus,\n.post .bottom #comments .right form .comment-container textarea[data-v-4017f840]:focus {\n  outline: none;\n  border-color: var(--green);\n}\n.post .bottom #comments .right form .comment-container input:focus + .my_caret[data-v-4017f840],\n.post .bottom #comments .right form .comment-container textarea:focus + .my_caret[data-v-4017f840] {\n  opacity: 1;\n  color: var(--green);\n  left: 0;\n}\n.post .bottom #comments .right form .button[data-v-4017f840] {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  padding-left: 20px;\n}\n.post .bottom #comments .right form .button .comment-sent[data-v-4017f840] {\n  color: var(--green);\n}\n.post .bottom #comments .right form .button.button-end[data-v-4017f840] {\n  justify-content: space-between;\n  align-items: center;\n}\n.post .bottom #comments .right form .button button[data-v-4017f840] {\n  font-size: 14px;\n  border: none;\n  background-color: var(--nav-color);\n  border-radius: 40px;\n  padding: 10px 20px;\n  color: white;\n  cursor: pointer;\n  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;\n}\n.post .bottom #comments .right form .button button[data-v-4017f840]:hover {\n  background-color: var(--green);\n}", ""]);
+exports.push([module.i, ".single-post-page .post[data-v-4017f840] {\n  padding: 35px 25px 35px 65px;\n}\n.single-post-page .post .top .title[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .title h1[data-v-4017f840] {\n  font-size: 45px;\n}\n.single-post-page .post .top .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .info .left[data-v-4017f840] {\n  display: flex;\n}\n.single-post-page .post .top .info .left span[data-v-4017f840] {\n  margin: 0 15px;\n  color: var(--green);\n}\n.single-post-page .post .top .info .left .date[data-v-4017f840] {\n  font-size: 15px;\n  font-weight: 300;\n  color: var(--nav-color);\n}\n.single-post-page .post .top .info .right[data-v-4017f840] {\n  display: flex;\n  align-items: center;\n}\n.single-post-page .post .top .info .right a[data-v-4017f840] {\n  display: block;\n  font-size: 14px;\n  font-family: \"Nimbus Sans\", sans-serif;\n  color: var(--nav-color);\n  text-decoration: none;\n  margin-left: 8px;\n}\n.single-post-page .post .top .info .right .icon-comment[data-v-4017f840] {\n  width: 20px;\n}\n.single-post-page .post .top .info .right .icon-comment path[data-v-4017f840] {\n  fill: var(--green);\n}\n.single-post-page .post .top .tags[data-v-4017f840] {\n  margin-bottom: 22px;\n}\n.single-post-page .post .top .tags h4[data-v-4017f840] {\n  font-size: 18px;\n  margin-right: 17px;\n}\n.single-post-page .post .top .tags .tags-container[data-v-4017f840] {\n  margin-top: 12px 0;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840] {\n  margin-right: 12px;\n  color: var(--green);\n  background: var(--nav-color);\n  border-radius: 20px;\n  padding: 2px 6px;\n  font-size: 14px;\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]::before {\n  content: \"#\";\n}\n.single-post-page .post .top .tags .tags-container .tag[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page .post .bottom img[data-v-4017f840] {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content {\n  font-size: 20px;\n  color: var(--author-name);\n  letter-spacing: -0.1px;\n  overflow-wrap: break-word;\n  line-height: 1.5;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content img {\n  width: 100%;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p {\n  margin-bottom: 20px;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content p a {\n  color: var(--green);\n  border-bottom: 1px solid #f1f1f1;\n  text-decoration: none;\n}\n.single-post-page .post .bottom[data-v-4017f840] .post-content h3 {\n  color: black;\n  font-family: \"Aktiv\", sans-serif;\n  margin-bottom: 15px;\n}\n.single-post-page .post .bottom #comments[data-v-4017f840] {\n  margin-top: 60px;\n  margin-bottom: 120px;\n  display: flex;\n}\n.single-post-page .post .bottom #comments .left[data-v-4017f840] {\n  width: 60%;\n}\n.single-post-page .post .bottom #comments .left h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 20px;\n}\n.single-post-page .post .bottom #comments .left .comments-empty[data-v-4017f840] {\n  font-size: 20px;\n  color: var(--author-name);\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .left .comment[data-v-4017f840] {\n  margin-bottom: 20px;\n  cursor: pointer;\n}\n.single-post-page .post .bottom #comments .left .comment:hover .info .name[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .left .comment .info[data-v-4017f840] {\n  display: flex;\n  justify-content: space-between;\n}\n.single-post-page .post .bottom #comments .left .comment .info .name[data-v-4017f840] {\n  color: var(--nav-color);\n  margin-bottom: 5px;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date[data-v-4017f840] {\n  font-size: 13px;\n  font-weight: 300;\n  color: var(--nav-color);\n}\n.single-post-page .post .bottom #comments .left .comment .info .date > *[data-v-4017f840] {\n  display: inline-block;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .hour[data-v-4017f840] {\n  text-align: right;\n}\n.single-post-page .post .bottom #comments .left .comment .info .date .slash[data-v-4017f840] {\n  color: var(--green);\n  margin: 0 2px;\n}\n.single-post-page .post .bottom #comments .left .comment .content[data-v-4017f840] {\n  color: var(--author-name);\n}\n.single-post-page .post .bottom #comments .right[data-v-4017f840] {\n  width: 40%;\n  padding-left: 50px;\n}\n.single-post-page .post .bottom #comments .right h4[data-v-4017f840] {\n  font-size: 24px;\n  font-weight: 700;\n  color: black;\n  padding-bottom: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container[data-v-4017f840] {\n  position: relative;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .comment-container .my_caret[data-v-4017f840] {\n  font-size: 18px;\n  position: absolute;\n  top: 15px;\n  left: -10px;\n  color: black;\n  opacity: 0;\n  transition: 0.3s;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840] {\n  width: 100%;\n  font-size: 16px;\n  color: var(--nav-color);\n  border: none;\n  border-bottom: 1px solid var(--nav-color);\n  padding: 6px 0;\n  margin-top: 10px;\n  margin-bottom: 15px;\n  resize: none;\n  font-family: \"Nimbus Sans\", sans-serif;\n}\n.single-post-page .post .bottom #comments .right form .comment-container input[data-v-4017f840]:focus,\n.single-post-page .post .bottom #comments .right form .comment-container textarea[data-v-4017f840]:focus {\n  outline: none;\n  border-color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .comment-container input:focus + .my_caret[data-v-4017f840],\n.single-post-page .post .bottom #comments .right form .comment-container textarea:focus + .my_caret[data-v-4017f840] {\n  opacity: 1;\n  color: var(--green);\n  left: 0;\n}\n.single-post-page .post .bottom #comments .right form .button[data-v-4017f840] {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  padding-left: 20px;\n}\n.single-post-page .post .bottom #comments .right form .button .comment-sent[data-v-4017f840] {\n  color: var(--green);\n}\n.single-post-page .post .bottom #comments .right form .button.button-end[data-v-4017f840] {\n  justify-content: space-between;\n  align-items: center;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840] {\n  font-size: 14px;\n  border: none;\n  background-color: var(--nav-color);\n  border-radius: 40px;\n  padding: 10px 20px;\n  color: white;\n  cursor: pointer;\n  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;\n}\n.single-post-page .post .bottom #comments .right form .button button[data-v-4017f840]:hover {\n  background-color: var(--green);\n}\n.single-post-page[data-v-4017f840] .latest {\n  padding-left: 65px;\n}", ""]);
 
 // exports
 
@@ -10870,7 +10937,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.posts.length > 0
-    ? _c("div", [
+    ? _c("div", { staticClass: "latest" }, [
         _c("h4", [_vm._v("The Latest")]),
         _vm._v(" "),
         _c(
@@ -11166,235 +11233,326 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.post.title
-    ? _c("div", { staticClass: "post" }, [
-        _c("div", { staticClass: "top" }, [
-          _c("div", { staticClass: "title" }, [
-            _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "info" }, [
-            _c(
-              "div",
-              { staticClass: "left" },
-              [
-                _c("AuthorName", { attrs: { author: _vm.post.author } }),
-                _vm._v(" "),
-                _c("span", { staticClass: "slash" }, [_vm._v("/")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "date" }, [
-                  _vm._v(_vm._s(_vm.post.created_at)),
-                ]),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "right" }, [
-              _c(
-                "svg",
-                {
-                  staticClass: "icon-comment",
-                  attrs: {
-                    viewBox: "0 0 20 20",
-                    version: "1.1",
-                    "aria-labelledby": "title",
-                  },
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      d: "M15.3,14.1h2.4v2.4h-2.4V14.1z M12.5,11.8H0v2.4h15.3v-2.4H12.5z M7.1,2.4h10.6V0H2.4v2.4H7.1z M17.6,18.8H20V0h-2.4V18.8zM2.4,5.9V0H0v11.8h2.4V5.9z",
-                    },
-                  }),
-                ]
-              ),
+  return _c(
+    "div",
+    { staticClass: "single-post-page" },
+    [
+      _vm.post.title
+        ? _c("div", { staticClass: "post" }, [
+            _c("div", { staticClass: "top" }, [
+              _c("div", { staticClass: "title" }, [
+                _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
+              ]),
               _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "comment-link", attrs: { href: "#comments" } },
-                [_vm._v("Comment")]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "tags" }, [
-            _c(
-              "div",
-              { staticClass: "tags-container" },
-              [
-                _c("h4", [_vm._v("Tags")]),
+              _c("div", { staticClass: "info" }, [
+                _c(
+                  "div",
+                  { staticClass: "left" },
+                  [
+                    _c("AuthorName", { attrs: { author: _vm.post.author } }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slash" }, [_vm._v("/")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "date" }, [
+                      _vm._v(_vm._s(_vm.post.created_at)),
+                    ]),
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _vm._l(_vm.post.tags, function (tag) {
-                  return _c(
-                    "router-link",
+                _c("div", { staticClass: "right" }, [
+                  _c(
+                    "svg",
                     {
-                      key: tag.id,
-                      staticClass: "tag",
+                      staticClass: "icon-comment",
                       attrs: {
-                        to: {
-                          name: "tag",
-                          params: { slug: tag.slug },
-                        },
+                        viewBox: "0 0 20 20",
+                        version: "1.1",
+                        "aria-labelledby": "title",
                       },
                     },
-                    [_vm._v(_vm._s(tag.name))]
-                  )
-                }),
-              ],
-              2
-            ),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "bottom" }, [
-          _c("div", { staticClass: "image" }, [
-            _c("img", {
-              attrs: { src: "/storage/" + _vm.post.image, alt: _vm.post.name },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "post-content",
-            domProps: { innerHTML: _vm._s(_vm.post.content) },
-          }),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "comments" } }, [
-            _c("div", { staticClass: "left" }),
-            _vm._v(" "),
-            _c("div", { staticClass: "right" }, [
-              _c("h4", [_vm._v("Add your comment")]),
-              _vm._v(" "),
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function ($event) {
-                      $event.preventDefault()
-                      return _vm.newComment()
-                    },
-                  },
-                },
-                [
-                  _c("div", { staticClass: "comment-container" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formData.name,
-                          expression: "formData.name",
+                    [
+                      _c("path", {
+                        attrs: {
+                          d: "M15.3,14.1h2.4v2.4h-2.4V14.1z M12.5,11.8H0v2.4h15.3v-2.4H12.5z M7.1,2.4h10.6V0H2.4v2.4H7.1z M17.6,18.8H20V0h-2.4V18.8zM2.4,5.9V0H0v11.8h2.4V5.9z",
                         },
-                      ],
-                      attrs: {
-                        type: "text",
-                        id: "inputUsername",
-                        placeholder: "Insert the username...",
-                      },
-                      domProps: { value: _vm.formData.name },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.formData, "name", $event.target.value)
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "my_caret fa-solid fa-caret-right",
-                    }),
-                  ]),
+                      }),
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "comment-container" }, [
-                    _c("textarea", {
-                      directives: [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "comment-link",
+                      attrs: { href: "#comments" },
+                    },
+                    [_vm._v("Comment")]
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "tags" }, [
+                _c(
+                  "div",
+                  { staticClass: "tags-container" },
+                  [
+                    _c("h4", [_vm._v("Tags")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.post.tags, function (tag) {
+                      return _c(
+                        "router-link",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formData.content,
-                          expression: "formData.content",
+                          key: tag.id,
+                          staticClass: "tag",
+                          attrs: {
+                            to: {
+                              name: "tag",
+                              params: { slug: tag.slug },
+                            },
+                          },
                         },
-                      ],
-                      attrs: {
-                        id: "inputComment",
-                        rows: "4",
-                        placeholder: "Insert the comment...",
-                      },
-                      domProps: { value: _vm.formData.content },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.formData, "content", $event.target.value)
-                        },
-                      },
+                        [_vm._v(_vm._s(tag.name))]
+                      )
                     }),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "bottom" }, [
+              _c("div", { staticClass: "image" }, [
+                _c("img", {
+                  attrs: {
+                    src: "/storage/" + _vm.post.image,
+                    alt: _vm.post.name,
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "post-content",
+                domProps: { innerHTML: _vm._s(_vm.post.content) },
+              }),
+              _vm._v(" "),
+              _c("div", { attrs: { id: "comments" } }, [
+                _c(
+                  "div",
+                  { staticClass: "left" },
+                  [
+                    _c("h4", [_vm._v("Comments")]),
                     _vm._v(" "),
-                    _c("i", {
-                      staticClass: "my_caret fa-solid fa-caret-right",
-                    }),
-                    _vm._v(" "),
-                    _vm.formErrors.content
-                      ? _c("div", [
-                          _c(
-                            "ul",
-                            _vm._l(_vm.formErrors.content, function (error, i) {
-                              return _c("li", { key: i }, [
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(error) +
-                                    "\n                                "
-                                ),
-                              ])
-                            }),
-                            0
+                    _vm.post.comments.length == 0
+                      ? _c("p", { staticClass: "comments-empty" }, [
+                          _vm._v(
+                            "\n                        The comments section is empty, add your comment now!\n                    "
                           ),
                         ])
                       : _vm._e(),
-                  ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.post.comments, function (comment) {
+                      return _c(
+                        "div",
+                        { key: comment.id, staticClass: "comment" },
+                        [
+                          _c("div", { staticClass: "info" }, [
+                            _c("div", { staticClass: "name" }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(comment.name) +
+                                  "\n                            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "date" }, [
+                              _c("div", { staticClass: "hour" }, [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(comment.formattedDate.hour) +
+                                    "\n                                "
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "slash" }, [
+                                _vm._v("/"),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "year" }, [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(comment.formattedDate.date) +
+                                    "\n                                "
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "content" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(comment.content) +
+                                "\n                        "
+                            ),
+                          ]),
+                        ]
+                      )
+                    }),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "right" }, [
+                  _c("h4", [_vm._v("Add your comment")]),
                   _vm._v(" "),
-                  _vm.commentSent
-                    ? _c("div", { staticClass: "button button-end" }, [
-                        _c("div", { staticClass: "comment-sent" }, [
-                          _vm._v("Comment sent!"),
-                        ]),
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function ($event) {
+                          $event.preventDefault()
+                          return _vm.newComment()
+                        },
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "comment-container" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formData.name,
+                              expression: "formData.name",
+                            },
+                          ],
+                          attrs: {
+                            type: "text",
+                            id: "inputUsername",
+                            placeholder: "Insert the username...",
+                          },
+                          domProps: { value: _vm.formData.name },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formData,
+                                "name",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-light",
-                            attrs: { type: "submit" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                            Send\n                        "
-                            ),
-                          ]
-                        ),
-                      ])
-                    : _c("div", { staticClass: "button" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-light",
-                            attrs: { type: "submit" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                            Send\n                        "
-                            ),
-                          ]
-                        ),
+                        _c("i", {
+                          staticClass: "my_caret fa-solid fa-caret-right",
+                        }),
                       ]),
-                ]
-              ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "comment-container" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formData.content,
+                              expression: "formData.content",
+                            },
+                          ],
+                          attrs: {
+                            id: "inputComment",
+                            rows: "4",
+                            placeholder: "Insert the comment...",
+                          },
+                          domProps: { value: _vm.formData.content },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formData,
+                                "content",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "my_caret fa-solid fa-caret-right",
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _vm.commentSent
+                        ? _c("div", { staticClass: "button button-end" }, [
+                            _c("div", { staticClass: "comment-sent" }, [
+                              _vm._v("Comment sent!"),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-light",
+                                attrs: { type: "submit" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Send\n                            "
+                                ),
+                              ]
+                            ),
+                          ])
+                        : _vm.formErrors.content
+                        ? _c("div", { staticClass: "button button-end" }, [
+                            _c("div", { staticClass: "comment-sent" }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.checkValidation) +
+                                  "\n                            "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-light",
+                                attrs: { type: "submit" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Send\n                            "
+                                ),
+                              ]
+                            ),
+                          ])
+                        : _c("div", { staticClass: "button" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-light",
+                                attrs: { type: "submit" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Send\n                            "
+                                ),
+                              ]
+                            ),
+                          ]),
+                    ]
+                  ),
+                ]),
+              ]),
             ]),
-          ]),
-        ]),
-      ])
-    : _vm._e()
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("LatestPosts"),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

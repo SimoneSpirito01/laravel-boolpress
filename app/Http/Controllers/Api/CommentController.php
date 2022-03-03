@@ -15,7 +15,7 @@ class CommentController extends Controller
 
         $validator = Validator::make($data, [
             'name' => 'nullable|string|max:50',
-            'content' => 'string|required',
+            'content' => 'required|string',
             'post_id' => 'exists:posts,id'
         ]);
 
