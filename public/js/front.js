@@ -8715,7 +8715,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".main-posts[data-v-69bf29ed] {\n  display: flex;\n  margin-bottom: 100px;\n}\n.main-posts .left[data-v-69bf29ed] {\n  width: 65%;\n  padding-right: 45px;\n  text-decoration: none;\n  color: initial;\n}\n.main-posts .left .title[data-v-69bf29ed] {\n  font-size: 45px;\n  font-weight: 700;\n  margin-bottom: 15px;\n}\n.main-posts .left .image[data-v-69bf29ed] {\n  width: 100%;\n}\n.main-posts .left .image img[data-v-69bf29ed] {\n  width: 100%;\n  display: block;\n}\n.main-posts .right[data-v-69bf29ed] {\n  width: 35%;\n}", ""]);
+exports.push([module.i, ".main-posts[data-v-69bf29ed] {\n  display: flex;\n  margin-bottom: 100px;\n  align-items: flex-start;\n}\n.main-posts .left[data-v-69bf29ed] {\n  width: 65%;\n  margin-right: 45px;\n  text-decoration: none;\n  color: initial;\n  background-color: white;\n  transition: 0.3s;\n  padding: 12px 10px;\n}\n.main-posts .left[data-v-69bf29ed]:hover {\n  background-color: #f1f1f1;\n  box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e, 4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e, 7px 7px #3e3e3e, 8px 8px #3e3e3e;\n  transform: translateX(-8px) translateY(-8px);\n}\n.main-posts .left .title[data-v-69bf29ed] {\n  font-size: 45px;\n  font-weight: 700;\n  margin-bottom: 15px;\n}\n.main-posts .left .image[data-v-69bf29ed] {\n  width: 100%;\n}\n.main-posts .left .image img[data-v-69bf29ed] {\n  width: 100%;\n  display: block;\n}\n.main-posts .right[data-v-69bf29ed] {\n  width: 35%;\n}", ""]);
 
 // exports
 

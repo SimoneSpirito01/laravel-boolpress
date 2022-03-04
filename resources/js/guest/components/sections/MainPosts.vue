@@ -22,7 +22,7 @@
 <script>
 import MainPost from "../commons/MainPost.vue";
 import AuthorName from "../commons/AuthorName.vue";
-import dataShared from '../../share/dataShared';
+import dataShared from "../../share/dataShared";
 
 export default {
     name: "MainPosts",
@@ -31,7 +31,7 @@ export default {
         AuthorName,
     },
     props: {
-        posts: Array
+        posts: Array,
     },
     data() {
         return {
@@ -45,11 +45,26 @@ export default {
 .main-posts {
     display: flex;
     margin-bottom: 100px;
+    align-items: flex-start;
     .left {
         width: 65%;
-        padding-right: 45px;
+        margin-right: 45px;
         text-decoration: none;
         color: initial;
+        background-color: white;
+        transition: 0.3s;
+        padding: 12px 10px;
+        &:hover {
+            background-color: #f1f1f1;
+            -webkit-box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e,
+                3px 3px #3e3e3e, 4px 4px #3e3e3e, 5px 5px #3e3e3e,
+                6px 6px #3e3e3e, 7px 7px #3e3e3e, 8px 8px #3e3e3e;
+            box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e, 3px 3px #3e3e3e,
+                4px 4px #3e3e3e, 5px 5px #3e3e3e, 6px 6px #3e3e3e,
+                7px 7px #3e3e3e, 8px 8px #3e3e3e;
+            -webkit-transform: translateX(-8px) translateY(-8px);
+            transform: translateX(-8px) translateY(-8px);
+        }
         .title {
             font-size: 45px;
             font-weight: 700;
