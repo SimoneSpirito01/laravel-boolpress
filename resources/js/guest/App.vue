@@ -21,7 +21,16 @@ export default {
 <style lang="scss" scoped>
 .container {
     display: flex;
-    // height: 100vh;
-    overflow-y: hidden;
+    width: 85%;
+    max-width: 1600px;
+    @media (max-width: 1500px) {
+        width: 90%;
+    }
+    @media (max-width: 1200px) {
+        width: 95%;
+    }
+    @media (max-width: 900px) {
+        width: 100%;
+    }
 }
 </style>

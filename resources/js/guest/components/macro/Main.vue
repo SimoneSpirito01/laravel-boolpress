@@ -18,9 +18,11 @@ main {
     margin-left: 14%;
     padding-left: 25px;
     overflow-y: auto;
-
-    .container {
-        width: 77%;
+    @media (max-width: 1200px) {
+        margin-left: 15%;
+    }
+    @media (max-width: 992px) {
+        margin-left: 16%;
     }
 }
 </style>

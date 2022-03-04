@@ -4,14 +4,19 @@
             <nav>
                 <ul>
                     <li>
-                        <Logo/>
+                        <Logo />
                     </li>
                     <li>
                         <router-link :to="{ name: 'home' }">Home</router-link>
                     </li>
                     <li v-for="category in categories" :key="category.id">
-                        <router-link :to="{ name: 'category', params: { slug:category.slug } }">
-                            {{category.name}}
+                        <router-link
+                            :to="{
+                                name: 'category',
+                                params: { slug: category.slug },
+                            }"
+                        >
+                            {{ category.name }}
                         </router-link>
                     </li>
                     <li><a href="/admin/home">Reserved area</a></li>
@@ -22,17 +27,17 @@
 </template>
 
 <script>
-import Logo from '../commons/Logo.vue'
+import Logo from "../commons/Logo.vue";
 
 export default {
     name: "Header",
     components: {
-        Logo
+        Logo,
     },
     data() {
         return {
-            categories: []
-        }
+            categories: [],
+        };
     },
     created() {
         axios
@@ -43,7 +48,7 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
-    }
+    },
 };
 </script>
 
@@ -55,7 +60,7 @@ header {
     left: 0;
     ul {
         list-style: none;
-        padding: 35px 30px;
+        padding: 42px 30px;
 
         li {
             margin-bottom: 12px;
@@ -66,6 +71,37 @@ header {
                 text-decoration: none;
                 &:hover {
                     color: var(--green);
+                }
+            }
+        }
+
+        @media (max-width: 1400px) {
+            padding: 42px 25px;
+            li {
+                a {
+                    font-size: 27px;
+                }
+            }
+        }
+        @media (max-width: 1200px) {
+            padding: 42px 22px;
+            li {
+                a {
+                    font-size: 26px;
+                }
+            }
+        }
+        @media (max-width: 992px) {
+            li {
+                a {
+                    font-size: 24px;
+                }
+            }
+        }
+        @media (max-width: 900px) {
+            li {
+                a {
+                    font-size: 22px;
                 }
             }
         }

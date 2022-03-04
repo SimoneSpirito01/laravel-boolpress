@@ -102,6 +102,27 @@ a {
                     margin: 0 5px;
                 }
             }
+            @media (max-width: 1400px) {
+                .title {
+                    font-size: 30px;
+                }
+            }
+            @media (max-width: 1200px) {
+                .title {
+                    font-size: 29px;
+                }
+            }
+            @media (max-width: 1100px) {
+                .title {
+                    font-size: 24px;
+                }
+            }
+            @media (max-width: 992px) {
+                font-size: 14px;
+                .title {
+                    font-size: 22px;
+                }
+            }
         }
         .center {
             margin: 0 30px;
@@ -110,6 +131,18 @@ a {
                 color: var(--nav-color) !important;
                 &::v-deep p {
                     font-size: 20px;
+                    @media (max-width: 1400px) {
+                        font-size: 19px;
+                    }
+                    @media (max-width: 1200px) {
+                        font-size: 17px;
+                    }
+                    @media (max-width: 1100px) {
+                        font-size: 16px;
+                    }
+                    @media (max-width: 992px) {
+                        font-size: 15px;
+                    }
                 }
                 &::v-deep a {
                     color: var(--nav-color);

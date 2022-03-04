@@ -54,6 +54,10 @@ export default {
         background-color: white;
         transition: 0.3s;
         padding: 12px 10px;
+        @media (max-width: 1200px) {
+                margin-right: 30px;
+            }
+        
         &:hover {
             background-color: #f1f1f1;
             -webkit-box-shadow: 1px 1px #3e3e3e, 2px 2px #3e3e3e,
@@ -69,6 +73,19 @@ export default {
             font-size: 45px;
             font-weight: 700;
             margin-bottom: 15px;
+
+            @media (max-width: 1400px) {
+                font-size: 41px;
+            }
+            @media (max-width: 1200px) {
+                font-size: 37px;
+            }
+            @media (max-width: 992px) {
+                font-size: 32px;
+            }
+            @media (max-width: 900px) {
+                font-size: 28px;
+            }
         }
         .image {
             width: 100%;

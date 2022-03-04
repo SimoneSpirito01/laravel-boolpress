@@ -59,12 +59,34 @@ a {
             font-weight: 700;
             margin-bottom: 10px;
         }
-        .author {
-            color: var(--author-name);
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
+        @media (max-width: 1400px) {
+            .title {
+                font-size: 28.5px;
+            }
         }
+        @media (max-width: 1400px) {
+            .title {
+                font-size: 26px;
+            }
+        }
+        @media (max-width: 1200px) {
+                .title {
+                    font-size: 21px;
+                }
+            }
+        @media (max-width: 992px) {
+                .title {
+                    font-size: 19px;
+                    margin-bottom: 7px;
+                }
+            }
+        @media (max-width: 900px) {
+            padding: 8px 0;
+                .title {
+                    font-size: 17px;
+                    margin-bottom: 5px;
+                }
+            }
     }
 }
 .right:hover .main-post:not(:hover) {

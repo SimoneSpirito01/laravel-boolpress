@@ -27,6 +27,14 @@ a {
         &:hover {
             color: #a800a0;
         }
+        @media (max-width: 1200px) {
+            margin-bottom: 7px;
+            font-size: 15px;
+        }
+        @media (max-width: 992px) {
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
     }
 }
 </style>
